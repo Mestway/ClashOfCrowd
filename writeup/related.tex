@@ -2,10 +2,18 @@
 
 \section{Related Work}
 
-What existing understanding of the problem has been developed?
+%What existing understanding of the problem has been developed?
+%For a research proposal, this will briefly cover the most important related work in the space you are exploring.
+%For a design proposal, this will introduce existing solutions, why they fall short, and the potential opportunity.
 
-For a research proposal, this will briefly cover the most important related work in the space you are exploring.
+\paragraph{Interactive Machine Learning}
+Interactive machine learning systems mainly try to either explain the corresponding models~\cite{ren2017squares, alsallakh2014visual}, or to accept feedback from users in order to improve or customize the model, or to compensate the lack of data.
 
-For a design proposal, this will introduce existing solutions, why they fall short, and the potential opportunity.
+The manipulations fall into two categories: 
+\emph{labeling}, where users provide more training data to the model (e.g., ELUCIDEBUG~\cite{kulesza2015principles}, Visual Classifier Training~\cite{heimerl2012visual}), and \emph{feature engineering}, where users specify the included features or the feature weights based on their domain knowledge (e.g., INFUSE~\cite{krause2014infuse}, FeatureInsight~\cite{brooks2015featureinsight}).
+More examples can be found in surveys~\cite{Brown2016HumanMachineLearnerIT}. 
+Though Tam et al.~\cite{tam2017analysis} mentioned that when constructing a decision tree, compared to the machine, humans are more capable in looking ahead into the long-term effect of setting one node, understanding combined feature effects, and incorporating domain knowledge into their decision process.
+However, little work has been done in understanding if such domain knowledge provided reflect people's over-confidence in themselves or how they are (not) aligned with the automatically learnt knowledge. 
+This is the main focus of our work.
 
 \paragraph{Competitive Human Computation Games}

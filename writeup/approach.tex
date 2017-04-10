@@ -1,0 +1,25 @@
+\section{Proposed Approach}
+
+One obvious alternative to collect people's opinions on certain uni-, bi-, or tri-gram features, is to provide sample sentences involving certain keywords to users, and collect their feedback on whether the keywords should be included in a classifier. 
+However, users' behavior could vary greatly when they try to guess the corpus distribution and the behavior of a classifier.
+Another alternative is to observe users' performances with a specific interactive machine learning system. 
+The problem then, is that specific interactions, designs, etc. in one system can limit how the users perform, which A) could lead to conclusions that are not generalizable, and (b) may not reflect how users would rank the features in the wild. 
+
+Therefore, in this project, we propose to crowdsource people's feedback with an adversarial game. 
+In the context of sentiment analysis of Tweets, we will pair crowd workers into pairs, each pair involving one feature-selection person A and a guessing person B.
+Given an unlabeled complete tweet, A is supposed to first label the tweet as positive or negative. 
+Then, A needs to block out a smallest keyword set that (s)he believes make the document emotionally classifiable. 
+These words are recorded as ``human-extracted features''.
+B will then try to classify the incomplete sentence without the features.
+Essentially, if B cannot classify the sentence correctly, we could claim that A has successfully collected important features for classifying the document.
+
+Such a game has three benefits:
+\begin{compactenum}
+	\item \textbf{Elicit both the labels and the features.} With the judgements from A and B, as well as the feature set gathered by A, we can not only understand if people can label correctly, but also observe the minimal information needed to interfere the judgement. In this way, we could gain an initial impression on how effective the two mainstream interactions, labeling and feature engineering, can be.
+	\item \textbf{Collect information without context. }With the game, we do not need to let users know they are doing text classification related tasks, and therefore can prevent workers from having biased pre-conceptions of the task.
+	\item \textbf{Make the data collection process more engaging}. The gamification can distinguish our project from a pure data entry task, and we believe workers will be more engaging in the provided tasks.
+\end{compactenum}
+ 
+With the collected data representing human's domain knowledge or context, we can then compare it to some automated models. 
+Potential models include TF-IDF~\cite{ramos2003using}, which reflects keyword importance in general, and Information gain~\cite{kent1983information}, which reflects the corpus distribution. 
+We could compare the feature ranking and weighting, as well as the classifier performance with the corresponding features.
