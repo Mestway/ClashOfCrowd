@@ -22,3 +22,5 @@
 # *.pdf
 *.fdb_latexmk
 *.synctex.gz
+*.pdf
+writeup/.texpadtmp

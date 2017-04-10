@@ -1,21 +1,36 @@
-\documentclass[notitlepage]{article}
-\usepackage{fancyhdr}
-\usepackage{listings}
-\usepackage[top=0.5in, left=0.85in, right=0.85in]{geometry}
-\usepackage{bera}
+\documentclass{article}
+\usepackage[papersize={8.5in, 11in},dvips]{geometry}
+\usepackage[utf8]{inputenc}
+
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{authblk}
+\usepackage{hyperref}
 
 \date{}
 \title{{\large CSE 510: Human Computer Interaction}\\ Project Proposal}
-\author{Author Name}
+
+\title{{\large{CSE 510 Spring '17 Project Proposal}}
+\\ \textbf{Induction of Slang Embeddings from Crowdsourced Dictionaries}}
+\author{Tongshuang Wu}
+\author{Quan Ze Chen}
+\author{Chenglong Wang}
+\affil[1]{Computer Science and Engineering}
+\affil[ ]{University of Washington}
+\renewcommand\Authands{, }
+\date{}
 
 \begin{document}
 
 \maketitle
 
-\section{Abstract}
-
+\input{intro}
 \input{related}
+\input{milestone}
 
+\newpage
+\bibliography{ref} 
+\bibliographystyle{ieeetr}
 
 \end{document}
