@@ -13,7 +13,14 @@ The manipulations fall into two categories:
 \emph{labeling}, where users provide more training data to the model (e.g., ELUCIDEBUG~\cite{kulesza2015principles}, Visual Classifier Training~\cite{heimerl2012visual}), and \emph{feature engineering}, where users specify the included features or the feature weights based on their domain knowledge (e.g., INFUSE~\cite{krause2014infuse}, FeatureInsight~\cite{brooks2015featureinsight}).
 More examples can be found in surveys~\cite{Brown2016HumanMachineLearnerIT}. 
 Though Tam et al.~\cite{tam2017analysis} mentioned that when constructing a decision tree, compared to the machine, humans are more capable in looking ahead into the long-term effect of setting one node, understanding combined feature effects, and incorporating domain knowledge into their decision process.
-However, little work has been done in understanding if such domain knowledge provided reflect people's over-confidence in themselves or how they are (not) aligned with the automatically learnt knowledge. 
+However, little work has been done in understanding if such domain knowledge provided reflect people's over-confidence in themselves or how they are (not) aligned with the automatically learned knowledge. 
 This is the main focus of our work.
 
-\paragraph{Competitive Human Computation Games}
+\paragraph{Human Computation Games}
+
+Human computation games are designed to solve problems that are hard for computers, where a problem is encoded into a game and the solution is drawn from players movements in the game. Prior computation games are designed for labeling multimedia documents (e.g., image, video, music)~\cite{vonAhn:2004:LIC:985692.985733,ho2009kisskissban,vonAhn:2006:PGL:1124772.1124782,Seneviratne:2010:IFI:1743384.1743473,law2007tagatune}, collection recommendation~\cite{walsh2010curator}, collecting common sense~\cite{von2006verbosity} and more. 
+
+In order to obtain better solutions from the user, such game are designed with both collaborative and competitive elements. Collaborative elements are designed to cross validate solutions from different users, where multiple plays must make an agreement on the game solution to achieve the goal~\cite{vonAhn:2006:PGL:1124772.1124782}, and competitive elements~\cite{ho2009kisskissban} are demonstrated to be effective against cheats and vagueness in collaborations, where different groups have opposite goals and they are supposed to optimize their solution while fighting against others.
+
+Our proposed project divides players into two competitive groups and support in-group collaboration and between-group competition, which resembles the design of KissKissBan~\cite{ho2009kisskissban}. Differently, our choice aims large collaboration groups ($> 10$ per group, while in KissKissBan per group contains only 2 people) and thus contains its unique challenge in game design. Furthermore, our goal involves both labeling and feature selection instead of only the former. Selected features can be viewed as an explanation of the labeling result, which brings us new opportunities to improve solution validation using the casual relation. 
+
