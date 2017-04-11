@@ -3,14 +3,12 @@
 %What makes the project interesting? What is the problem or research question?
 %What is the pain point you want to solve, the new capability you want to enable, or the research you want to explore?
 
-There has been increasing research into how to integrate human intelligence into the construction of machine learning models, which, traditionally, is a fully automated process.
-To this end, various systems have been developed to help users provide feedback to the model being built by either labeling new instances or manipulating the feature space. 
-Whereas many interactive machine learning systems have reported increased comprehensibility, we are yet to prove if humans are reasonable sources for providing additional information to machine learning algorithms.
-Stumpf et al. have observed in an earlier studies~\cite{stumpf2009interacting} that (1) humans can be noisy labelers with 5-20\% error rate, and (2) participants disagree with the machine in an email classification task for one third of the time.
-Such observations raise questions 
-We suspect such mis-labeling and disagreements can result from that fact that people weigh features with context (common sense, domain knowledge, etc).
-Kulesza1 et al.~\cite{kulesza2015principles} mentioned that, when classifying texts, users often identify only the \emph{obvious} keywords rather than \emph{subtle} ones, or ``words that are not normally associated with a topic, but appear in the classifier's training set and thus will impact classification''.
+There has been increasing research into how to integrate human intelligence into the construction of machine learning models, which, traditionally, is a fully automated process. To this end, various systems have been developed to help users provide feedback to the model being built by either labeling new instances or manipulating the feature space. Whereas many interactive machine learning systems have reported increased comprehensibility, we are yet to prove if humans are reasonable sources for providing additional information to machine learning algorithms.
 
-We are thus interested in understanding, in the context of text classification with bag-of-words features, 
-(1) if humans can effectively recognize useful features that make a document distinguishable, and 
-(2) what are the differences, if any, between the feature importances recognized by an automated classifier and by humans.
+Stumpf et al. have observed in an earlier studies~\cite{stumpf2009interacting} that (1) humans can be noisy labelers with 5-20\% error rate, and (2) participants disagree with the machine in an email classification task for one third of the time. Kulesza1 et al.~\cite{kulesza2015principles} mentioned that, when classifying texts, users often identify only the \emph{obvious} keywords rather than \emph{subtle} ones, or ``words that are not normally associated with a topic, but appear in the classifier's training set and thus will impact classification''. We suspect such mis-labeling and disagreements can result from that fact that people weigh features with context (common sense, domain knowledge, how they expect the system to use those features etc).
+
+We are thus interested in understanding, in the context of text classification with bag-of-words features:
+\begin{itemize}
+\item If humans can effectively recognize useful features that make a document distinguishable, and 
+\item What differences, if any, exist between the features recognized by an automated classifier and those by humans.
+\end{itemize}

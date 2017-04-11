@@ -1,0 +1,96 @@
+\begin{thebibliography}{10}
+
+\bibitem{stumpf2009interacting}
+S.~Stumpf, V.~Rajaram, L.~Li, W.-K. Wong, M.~Burnett, T.~Dietterich,
+  E.~Sullivan, and J.~Herlocker, ``Interacting meaningfully with machine
+  learning systems: Three experiments,'' {\em International Journal of
+  Human-Computer Studies}, vol.~67, no.~8, pp.~639--662, 2009.
+
+\bibitem{kulesza2015principles}
+T.~Kulesza, M.~Burnett, W.-K. Wong, and S.~Stumpf, ``Principles of explanatory
+  debugging to personalize interactive machine learning,'' in {\em Proceedings
+  of the 20th International Conference on Intelligent User Interfaces},
+  pp.~126--137, ACM, 2015.
+
+\bibitem{ramos2003using}
+J.~Ramos {\em et~al.}, ``Using tf-idf to determine word relevance in document
+  queries,'' in {\em Proceedings of the first instructional conference on
+  machine learning}, 2003.
+
+\bibitem{kent1983information}
+J.~T. Kent, ``Information gain and a general measure of correlation,'' {\em
+  Biometrika}, vol.~70, no.~1, pp.~163--173, 1983.
+
+\bibitem{ren2017squares}
+D.~Ren, S.~Amershi, B.~Lee, J.~Suh, and J.~D. Williams, ``Squares: Supporting
+  interactive performance analysis for multiclass classifiers,'' {\em IEEE
+  Transactions on Visualization and Computer Graphics}, vol.~23, no.~1,
+  pp.~61--70, 2017.
+
+\bibitem{alsallakh2014visual}
+B.~Alsallakh, A.~Hanbury, H.~Hauser, S.~Miksch, and A.~Rauber, ``Visual methods
+  for analyzing probabilistic classification data,'' {\em IEEE transactions on
+  visualization and computer graphics}, vol.~20, no.~12, pp.~1703--1712, 2014.
+
+\bibitem{heimerl2012visual}
+F.~Heimerl, S.~Koch, H.~Bosch, and T.~Ertl, ``Visual classifier training for
+  text document retrieval,'' {\em IEEE Transactions on Visualization and
+  Computer Graphics}, vol.~18, no.~12, pp.~2839--2848, 2012.
+
+\bibitem{krause2014infuse}
+J.~Krause, A.~Perer, and E.~Bertini, ``Infuse: interactive feature selection
+  for predictive modeling of high dimensional data,'' {\em IEEE Transactions on
+  Visualization and Computer Graphics}, vol.~20, no.~12, pp.~1614--1623, 2014.
+
+\bibitem{brooks2015featureinsight}
+M.~Brooks, S.~Amershi, B.~Lee, S.~M. Drucker, A.~Kapoor, and P.~Simard,
+  ``Featureinsight: Visual support for error-driven feature ideation in text
+  classification,'' in {\em Visual Analytics Science and Technology (VAST),
+  2015 IEEE Conference on}, pp.~105--112, IEEE, 2015.
+
+\bibitem{Brown2016HumanMachineLearnerIT}
+E.~T. Brown, R.~Chang, and A.~Endert, ``Human-machine-learner interaction: The
+  best of both worlds,'' 2016.
+
+\bibitem{tam2017analysis}
+G.~K. Tam, V.~Kothari, and M.~Chen, ``An analysis of machine-and
+  human-analytics in classification,'' {\em IEEE Transactions on Visualization
+  and Computer Graphics}, vol.~23, no.~1, pp.~71--80, 2017.
+
+\bibitem{vonAhn:2004:LIC:985692.985733}
+L.~von Ahn and L.~Dabbish, ``Labeling images with a computer game,'' in {\em
+  Proceedings of the SIGCHI Conference on Human Factors in Computing Systems},
+  CHI '04, (New York, NY, USA), pp.~319--326, ACM, 2004.
+
+\bibitem{ho2009kisskissban}
+C.-J. Ho, T.-H. Chang, J.-C. Lee, J.~Y.-j. Hsu, and K.-T. Chen, ``Kisskissban:
+  a competitive human computation game for image annotation,'' in {\em
+  Proceedings of the acm sigkdd workshop on human computation}, pp.~11--14,
+  ACM, 2009.
+
+\bibitem{vonAhn:2006:PGL:1124772.1124782}
+L.~von Ahn, R.~Liu, and M.~Blum, ``Peekaboom: A game for locating objects in
+  images,'' in {\em Proceedings of the SIGCHI Conference on Human Factors in
+  Computing Systems}, CHI '06, (New York, NY, USA), pp.~55--64, ACM, 2006.
+
+\bibitem{Seneviratne:2010:IFI:1743384.1743473}
+L.~Seneviratne and E.~Izquierdo, ``An interactive framework for image
+  annotation through gaming,'' in {\em Proceedings of the International
+  Conference on Multimedia Information Retrieval}, MIR '10, (New York, NY,
+  USA), pp.~517--526, ACM, 2010.
+
+\bibitem{law2007tagatune}
+E.~L. Law, L.~Von~Ahn, R.~B. Dannenberg, and M.~Crawford, ``Tagatune: A game
+  for music and sound annotation.,''
+
+\bibitem{walsh2010curator}
+G.~Walsh and J.~Golbeck, ``Curator: a game with a purpose for collection
+  recommendation,'' in {\em Proceedings of the SIGCHI Conference on Human
+  Factors in Computing Systems}, pp.~2079--2082, ACM, 2010.
+
+\bibitem{von2006verbosity}
+L.~Von~Ahn, M.~Kedia, and M.~Blum, ``Verbosity: a game for collecting
+  common-sense facts,'' in {\em Proceedings of the SIGCHI conference on Human
+  Factors in computing systems}, pp.~75--78, ACM, 2006.
+
+\end{thebibliography}

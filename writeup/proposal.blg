@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: proposal.aux
+The style file: ieeetr.bst
+Database file #1: ref.bib
+Warning--empty booktitle in Brown2016HumanMachineLearnerIT
+Warning--empty booktitle in law2007tagatune
+Warning--empty year in law2007tagatune
+You've used 18 entries,
+            1876 wiz_defined-function locations,
+            587 strings with 7140 characters,
+and the built_in function-call counts, 6010 in all, are:
+= -- 594
+> -- 230
+< -- 0
++ -- 83
+- -- 65
+* -- 441
+:= -- 811
+add.period$ -- 17
+call.type$ -- 18
+change.case$ -- 18
+chr.to.int$ -- 0
+cite$ -- 21
+duplicate$ -- 322
+empty$ -- 572
+format.name$ -- 65
+if$ -- 1464
+int.to.chr$ -- 0
+int.to.str$ -- 18
+missing$ -- 18
+newline$ -- 57
+num.names$ -- 18
+pop$ -- 73
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 226
+stack$ -- 0
+substring$ -- 472
+swap$ -- 134
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 3
+while$ -- 63
+width$ -- 20
+write$ -- 186
+(There were 3 warnings)
