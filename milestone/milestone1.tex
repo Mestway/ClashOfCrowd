@@ -33,7 +33,7 @@
 
 \subsection{Refined Research Question}
 
-Existing literatures have been trying to collect the connections between  ``labels'' and ``features'' for text classification. 
+Prior work collects the connections between  ``labels'' and ``features'' for text classification. 
 By asking users to (1) label a document and (2) then select words associated with this decision it, researchers try to understand humans' decision making procedure, and therefore to reconstruct their mental models.
 However, such methods suffer from ``hindsight bias'', meaning that post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts.
 The collected labels and features are thus not guaranteed to be naturally paired.
@@ -48,19 +48,28 @@ Toward this end, we have proposed various paper mockups, and empirically evaluat
 \begin{compactitem}
 	\item Data quality
 	\item Difficulty
-	\item Competitive incentive
+	\item Compatible incentive
 \end{compactitem}
  
 We narrowed them down to five sketches that can potentially be implemented for further comparison, as summarized in Table.~\ref{table:game}.
 
 This was exactly our proposed milestone 1.
 
+\subsection{Evaluation} Our evaluation of the collected data include two steps. First, we want to evaluate the precision of labels provided by users in the games. This quantitative evaluation directly reflects the causing facts of user performance (e.g., which document modification decreases the precision most in the game). Second, we plan to qualitatively analyze features collected by the users to explain why different types of document modification results in different performance. The qualitative analysis includes: (1) compare features extracted from the same document through different approach, and (2) analyzing common properties of important features (e.g., part-of-speech, position, context).
 
 \section{Next Steps}
 
 Before the next milestone, we will quickly implement the sketches in Table.~\ref{table:game}. 
 We will iterate through a test-and-test procedure to (1) select 1-2 most suitable games for the real user study, and (2) fix potential problems in prototypes. 
 Afterwards, we will deploy the system, collect and analyze the data.
+
+\section{Feedbacks Expecting}
+
+We are expecting feedbacks for the followings.
+\begin{itemize}
+\item Is our problem, ``understanding human features'', well motivated? 
+\item Do our current game designs match our goal? We have vetoed a few designs previously since they may produce a different set data that cannot answer the question. For example, one of our previous design is a game that asking human compete labeling against computer on documented processed by another player. We vetoed it because it may motivate the second play to choose words to fool the compute rather than naturally choosing decision making features.
+\end{itemize}
 
 \begin{figure}[htb]
   \centering
