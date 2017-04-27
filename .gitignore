@@ -25,3 +25,6 @@
 *.fdb_latexmk
 *.synctex.gz
 writeup/.texpadtmp
+workflow.pdf
+milestone/milestone1.pdf
+proposal/proposal.pdf
