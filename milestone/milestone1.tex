@@ -39,7 +39,7 @@ However, such methods suffer from ``hindsight bias'', meaning that post-hoc word
 The collected labels and features are thus not guaranteed to be naturally paired.
 
 In this project, we try to come up with a workflow that could extract the real ``human features'', or the human understandings that mapped onto words, simultaneously during the labeling procedure.
-By gamify the workflow and manipulate the users' access to information, we try to indirectly and verity learn latent features humans actually use.
+By gamify the workflow and manipulate the users' access to information, we try to indirectly learn and verify latent features humans actually use.
 If time permits, we would also want to test if such learn features could inform machine models.
 
 \subsection{Game mockups}
@@ -49,14 +49,14 @@ Toward this end, we have proposed various paper mockups, and empirically evaluat
 \begin{compactitem}
 	\item \textbf{Data quality}: Since we are manipulating users' labeling and feature selection procedure, we need to be careful enough that our design does not make the data too noisy, biased, etc.
 	\item \textbf{Difficulty}: The game should be fairly intuitive to play and should not overwhelm the players. 
-	\item \textbf{Compatible incentive}: The incentives for different players, either in competitive or collaborative games, should be compatible such that neither side have shortcuts and could play in a fair setting.
+	\item \textbf{Compatible incentive}: The incentives for different players, either in competitive or collaborative games, should be compatible such that neither sides have shortcuts and could play in a fair setting.
 \end{compactitem}
  
 We narrowed them down to five sketches that can potentially be implemented for further comparison, as summarized in Table.~\ref{table:game}.
 
 This was exactly our proposed milestone 1.
 
-\subsection{Evaluation} Our evaluation of the collected data include two steps. First, we want to evaluate the precision of labels provided by users in the games. This quantitative evaluation directly reflects the causing facts of user performance (e.g., which document modification decreases the precision most in the game). Second, we plan to qualitatively analyze features collected by the users to explain why different types of document modification results in different performance. The qualitative analysis includes: (1) compare features extracted from the same document through different approach, and (2) analyzing common properties of important features (e.g., part-of-speech, position, context).
+\subsection{Evaluation} Our evaluation of the collected data includes two steps. First, we want to evaluate the precision of labels provided by users in the games. This quantitative evaluation directly reflects the causing facts of user performance (e.g., which document modification decreases the precision most in the game). Second, we plan to qualitatively analyze features collected by the users to explain why different types of document modification result in different performance. The qualitative analysis includes: (1) compare features extracted from the same document through different approaches, and (2) analyzing common properties of important features (e.g., part-of-speech, position, context).
 
 \section{Next Steps}
 
@@ -79,7 +79,7 @@ Afterwards, we will deploy the system, collect and analyze the data.
 We are expecting feedbacks for the followings.
 \begin{itemize}
 \item Is our problem, ``understanding human features'', well motivated? 
-\item Do our current game designs match our goal? We have vetoed a few designs previously since they may produce a different set data that cannot answer the question. For example, one of our previous design is a game that asking human compete labeling against computer on documented processed by another player. We vetoed it because it may motivate the second play to choose words to fool the compute rather than naturally choosing decision making features.
+\item Do our current game designs match our goal? We have vetoed a few designs previously since they may produce a different set data that cannot answer the question. For example, one of our previous design is a game that asking human compete labeling against the computer on documented processed by another player. We vetoed it because it may motivate the second play to choose words to fool the computer rather than naturally choosing decision making features.
 \end{itemize}
 
 %For the first milestone, we expect to complete several paper-mocks of proposed designs of these games (visual and game mechanics) and solicit feedback on how engaging the gameplay will be. We will analyze and iterate over these designs and narrow them down to a subset that we will implement.
