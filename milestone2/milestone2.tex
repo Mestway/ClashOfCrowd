@@ -32,15 +32,19 @@ Remaining tasks include deploy all five games to the crowds and analyze data col
 
 \section{Implementation}
 
-We briefly describe our game implementation in this section. 
+We briefly describe our game implementation in this section, there game interfaces are shown below.
 
 \begin{itemize}
 \item \emph{DirectAnnotate}. This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words).
 \item \emph{Bingo}. This is the game where two players coop on labeling document sentiment and extract informative words. The game requires labels collected from the team are the same, and the game is finished when two players reach an agreement on four informative words. 
 \item \emph{HangmanAdd}. Players in this game are assigned as annotator and guesser. The annotator label the document and provides a list of ranked informative words to assist the guesser to guess the document sentiment. Game result counts on how many words are used and whether the guesser result agree with the annotator's label.
 \item \emph{HangmanSubtract}. This is a competitive game where the two players are assigned as roles masker and guesser. The masker is asked to label the document and mask informative words that are important to his decision. The masker's goal is to hinder the guess to figure out the correct the document sentiment and the guesser is asked to guess document based on the masked document. (The guesser can unmask words with the reduction on the payment bonus and the masker earn more if labeled less but more effective.) 
-
 \end{itemize}
+
+\begin{figure}[t]
+\includegraphics[width=\linewidth]{gamepreview.pdf}
+\caption{Interface of DirectAnnotate, Bingo, HangmanAdd and HangmanSubtract}
+\end{figure}
 
 \section{Data Analysis Method}
 In these games, the following data can be collected (we use {\textbullet} to denote data can be collected and $\circ$ to denote that can be partially collected). Given these collected data, our inter-game analysis plan is listed below.
