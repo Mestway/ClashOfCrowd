@@ -11,7 +11,6 @@
 \usepackage{lscape}
 \usepackage{color}
 
-
 \title{{\large{CSE 510 Spring '17 Project Milestone 2}}
 \\ \textbf{Clash of Crowds: Competitive Crowdsourcing}}
 \author{Tongshuang Wu, Quan Ze Chen, Chenglong Wang}
@@ -27,122 +26,57 @@
 \maketitle
 
 
-In the last milestone, we refined our research questions and sketched our game mockups. Till now, we have implemented our game platform (for coordinating players to start coop games) and the first three games (DirectAnnotation, Bingo and HangmanAdd). Furthermore, we designed the data-analysis method that will be used to analyze experiment result.
+In the last milestone, we refined our research questions and sketched our game mockups. Till now, we have implemented our game platform (for coordinating players to start coop games) and four games (DirectAnnotation, Bingo, HangmanAdd and HangmanSubtract). Furthermore, we designed the data-analysis method that will be used to analyze experiment result.
 
-Remaining tasks include (1) implement the two games left, (2) deploy all five games to the crowds, and (3) analyze data collected from the experiments.
+Remaining tasks include deploy all five games to the crowds and analyze data collected from the experiments.
 
-\subsection{Implementation}
+\section{Implementation}
 
 We briefly describe our game implementation in this section. 
 
 \begin{itemize}
-\item \emph{Bingo}: sf
+\item \emph{DirectAnnotate}. This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words).
+\item \emph{Bingo}. This is the game where two players coop on labeling document sentiment and extract informative words. The game requires labels collected from the team are the same, and the game is finished when two players reach an agreement on four informative words. 
+\item \emph{HangmanAdd}. Players in this game are assigned as annotator and guesser. The annotator label the document and provides a list of ranked informative words to assist the guesser to guess the document sentiment. Game result counts on how many words are used and whether the guesser result agree with the annotator's label.
+\item \emph{HangmanSubtract}. This is a competitive game where the two players are assigned as roles masker and guesser. The masker is asked to label the document and mask informative words that are important to his decision. The masker's goal is to hinder the guess to figure out the correct the document sentiment and the guesser is asked to guess document based on the masked document. (The guesser can unmask words with the reduction on the payment bonus and the masker earn more if labeled less but more effective.) 
+
 \end{itemize}
 
-\subsection{Evaluation} Our evaluation of the collected data includes two steps. First, we want to evaluate the precision of labels provided by users in the games. This quantitative evaluation directly reflects the causing facts of user performance (e.g., which document modification decreases the precision most in the game). Second, we plan to qualitatively analyze features collected by the users to explain why different types of document modification result in different performance. The qualitative analysis includes: (1) compare features extracted from the same document through different approaches, and (2) analyzing common properties of important features (e.g., part-of-speech, position, context).
+\section{Data Analysis Method}
+In these games, the following data can be collected (we use {\textbullet} to denote data can be collected and $\circ$ to denote that can be partially collected). Given these collected data, our inter-game analysis plan is listed below.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|cccc|}
+\hline
+Data  & Annotation & Bingo &  HangmanAdd  &   HangmanSubtract   \\
+ \hline
+Labels-full & \textbullet & \textbullet & \textbullet & \textbullet  \\
+Labels-verify &  & $\circ$ & \textbullet & \textbullet  \\
+Features-init & \textbullet & \textbullet & \textbullet & \textbullet  \\
+Features-rank &  & \textbullet & \textbullet & \textbullet  \\
+Features-refine &  &  &  & \textbullet  \\
+Features-verify &  & \textbullet & \textbullet & \textbullet  \\\hline
+\end{tabular}
+\caption{\emph{Labels-full} refers to whether we can extract sentiment label from the game, \emph{labels-verify} refers to whether the game supports different players to verify their label result, \emph{feature-init} refers to whether the game obtains features provided by the gamer, \emph{feature-rank} refers to whether obtained features are ranked, \emph{feature-refine} refers to whether the player can refine initially collected feature, and \emph{feature-verify} refers to whether features are verified though multiple players.}
+\end{table}
+
+\begin{itemize}
+\item (All games-Machine Algorithm): which approach best extract label and features and how they differ from ones extract by machine.
+\item (Annotation-Bingo): Whether the incentive to reach agreement improves the labeling and feature extraction result.
+\item (HangmanAdd-HangmanSubtract): How effective are the informative words in affecting sentiment decision making (from a collaborative view and and competitive view). Also, how important is the document structure information in contributing to sentiment labeling (the former has no structure information). 
+\end{itemize}
 
 \section{Next Steps}
 
-Before the next milestone, we will quickly implement the sketches in Table.~\ref{table:game}. 
-We will iterate through a test-and-test procedure to (1) select 1-2 most suitable games for the real user study, and (2) fix potential problems in prototypes. 
-Afterwards, we will deploy the system, collect and analyze the data.
+We are in our process of deploying more games to collect data. The rest of task is to collect and data and perform data analysis in detail.
 
 \section{Feedbacks Expecting}
 
 We are expecting feedbacks for the followings.
 \begin{itemize}
-\item Is our problem, ``understanding human features'', well motivated? 
-\item Do our current game designs match our goal? We have vetoed a few designs previously since they may produce a different set data that cannot answer the question. For example, one of our previous design is a game that asking human compete labeling against the computer on documented processed by another player. We vetoed it because it may motivate the second play to choose words to fool the computer rather than naturally choosing decision making features.
+\item We notice that many user may not pay attention to the task training instruction, what can we do to improve its effectiveness?
+\item Besides comparing game results in terms of labeling accuracy (quantitatively) and extract features ( qualitatively), is there any other analysis we can do to obtain more interesting result?
 \end{itemize}
-
-%For the first milestone, we expect to complete several paper-mocks of proposed designs of these games (visual and game mechanics) and solicit feedback on how engaging the gameplay will be. We will analyze and iterate over these designs and narrow them down to a subset that we will implement.
-
-
-\begin{landscape}
-\begin{table}[h]
-\centering
-\begin{tabular}{|p{0.08\paperwidth} |p{0.07\paperwidth} |p{0.2\paperwidth} |p{0.25\paperwidth} |p{0.09\paperwidth} |p{0.18\paperwidth}|}
-\hline
-\textbf{Game\/System} & \textbf{Player} & \textbf{Mechanism} & \textbf{Pros\&Cons} & \textbf{Difficulty} & \textbf{Compatible Incentive} 
-\\  \hline 
-%%
-\tabincell{l}{Direct\\Annotation\\(Baseline)}
-& 1P & Directly ask users to choose features they used. 
-& \begin{compactitem}
- \item[$+$] \pro{Access to the full doc}
- \item[$-$] \con{* Hindsight bias}
- \item[$-$] \con{* No checks}
- \end{compactitem}
-& Easy
-& N/A (not a game) 
-\\  \hline 
-%%
-Bingo 
-& \tabincell{l}{2P,\\Collab} 
-& Two users annotate one document. Score when they label the same feature. 
-& \begin{compactitem}
- \item[$+$] \pro{* Less noisy}
- \item[$+$] \pro{Access to the full doc} 
- \item[$-$] \con{* Hindsight bias}
- \item[$-$] \con{* Low representation of individual users}
- \end{compactitem}
-& Moderate
-& Reward Mutual agreement
-\\ \hline 
-%% 
-\tabincell{l}{Hangman,\\\emph{Additive}}
-& \tabincell{l}{2P,\\Collab} 
-& \textbf{Guesser} asks for a word from annotator. \textbf{Annotator} returns a word to the guesser.
-& \begin{compactitem}
- \item[$+$] \pro{* Mediate hindsight bias}
- \item[$+$] \pro{Engaging} 
- \item[$-$] \con{Takes more time}
- \item[$-$] \con{Guesser cannot access document structure}
- \end{compactitem}
-& Moderate
-& \begin{compactitem}[-]
- \item Reward agreement
- \item Penalize queries used
- \end{compactitem}
-\\ \hline
-%%
-Censor
-& \tabincell{l}{2P,\\Compete} 
-& \textbf{Censors} mask words in a document.
-\textbf{Identifiers} label the censored document.
-& \begin{compactitem}
- \item[$+$] \pro{* Keep doc structure}
- \item[$+$] \pro{* Mediate hindsight bias} 
- \item[$+$] \pro{Engaging and easy}
- \item[$-$] \con{Can't reuse identifiers}
- \item[$-$] \con{Need to retain censors}
- \end{compactitem}
-& \tabincell{l}{\textbf{Censors}: \\Moderate\\\textbf{Identifiers}: \\Easy}
-& \tabincell{l}{\textbf{Censors}: \\Reward fooling users\\\textbf{Identifiers}: \\Reward for being correct}
-\\ \hline
-%%
-\tabincell{l}{Hangman,\\\emph{Subtractive}}
-& \tabincell{l}{2P,\\Compete} 
-& \textbf{Censors} remove a set of words from a document.
-\textbf{Guesser} queries one word at a time (can choose position).
-& \begin{compactitem}
- \item[$+$] \pro{* Keep doc structure}
- \item[$+$] \pro{* Mediate hindsight bias} 
- \item[$+$] \pro{Engaging and easy}
- \item[$-$] \con{Can't reuse guessers}
- \item[$-$] \con{More mental load balancing prices}
- \end{compactitem}
-& \tabincell{l}{\textbf{Censors}: \\Moderate\\\textbf{Identifiers}: \\Easy}
-& \tabincell{l}{\textbf{Censors}: \\Reward fooling users\\\textbf{Identifiers}: \\Reward for being correct}
-\\ \hline
-\end{tabular}
-\label{table:game}
-\caption{Designed games. Pros and Cons with ``*'' are the attributes affecting data quality mentioned in Section.~\ref{sec:mockup}}
-\end{table}
-
-\end{landscape}
-
-
-
 
 \end{document}
