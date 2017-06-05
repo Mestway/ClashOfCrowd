@@ -153,10 +153,8 @@
 \maketitle
 
 \begin{abstract}
-While feature extractions and selections have become popular in the field of interactive Machine Learning, 
-little has been known how effective such human intersections are. 
-In this work, we indirectly learn and verify latent features humans actually use by gamifying the simultaneous labeling and feature selection procefure.
-By comparing four crowdsourcing games with a benchmark system and between each other, we hope to explore if and how human judgments could effectively inform machine learning models.
+Feature extraction and selection have become popular in the field of interactive Machine Learning (iML), however, few systems attempt at understanding how humans interpret the features being used. In this work, we attempt to indirectly learn and verify latent features humans actually use by gamifying the simultaneous labeling and feature selection procedure.
+By comparing four crowdsourcing games against a benchmark system and between each other, we explore models of human judgements mapped to constrained feature sets to see if and how human judgments may effectively inform machine learning models.
 \end{abstract}
 
 %\category{H.5.m.}{Information Interfaces and Presentation
@@ -168,31 +166,29 @@ By comparing four crowdsourcing games with a benchmark system and between each o
 
 \section{Introduction}
 
-%Identifying predictive features is key to creating effective machine learning classifiers. 
 Interactive feature selection has become one of the mainstreams in interactive Machine Learning (iML).
 Current classification systems have been taking advantage of human judgments to select predictive features to build effective machine learning models~\cite{brooks2015featureinsight, cheng2015flock}. 
 \todo{For instance??}
-While researchers have argued that human could contribute their domain knowledge to the models~\cite{stumpf2009interacting}, studies have frequently proved that human intersections are not as effective as we have hoped. 
+While researchers have argued that humans could contribute their domain knowledge to the models~\cite{stumpf2009interacting}, studies have frequently proved that human intersections are not as effective as we have hoped. 
 In fact, such intersections have caused the performances of multiple models to decrease~\cite{fiebrink2011human,stumpf2009interacting}.
-One of the potential barriers here is that we have little have been known how effective are the human inputs.
-This is because of two reasons: 
+One of the potential barriers here is that we have little knowledge modelling how effective humans input is.
 
-First, current feature selection procedures may not reflect the real reasoning procedures of feature engineers.
-Prior work (e.g.,~\cite{trivedi2015interactive}) seeks to understand features that human use by mapping users' mental model into concrete words in the document. The approach used to collected such feature words (i.e., ``human features''), take sentiment analysis for example, is to directly ask users to (1) label a document and (2) then select words associated with this decision it. 
-While such techniques are straightforward and easy to collect, it is unclear whether features collected in this way suffer from the ``hindsight bias'' effect of human labelers. 
- ~\cite{gazzaniga2013integrated} has proved that people are generally poor at introspecting on the signals they use to make decisions.
-In other words, post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts. If such effect exists, collected labels and features are not guaranteed to be naturally paired.
+There are a few reasons that may cause ineffective human input: 
 
-Second, we are yet to understand if computers and humans proceed a classification task in the same way. 
+Firstly, current feature selection procedures may not reflect the real reasoning procedures of feature engineers.
+Prior work (e.g.,~\cite{trivedi2015interactive}) seeks to understand features that human use by mapping users' mental model into concrete words in the document. The approach used to collect such feature words (i.e., ``human features''), take sentiment analysis for example, is to directly ask users to (1) label a document and (2) then select words associated with this decision it. 
+While such techniques are straightforward, it is unclear whether features collected in this way suffer from the ``hindsight bias'' effect of human labelers. 
+ ~\cite{gazzaniga2013integrated} has proved that people are generally poor at introspecting on the signals they use to make decisions. In other words, post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts. If such effect exists, collected labels and features are not guaranteed to be naturally paired. Additionally, diverging understanding of the task may also result in different features being selected among human workers.
+
+
+Another reason may be that, we have yet to understand if computers and humans proceed a classification task in the same way. 
 Most of the state-of-art iML systems use linear models like Naive Bayes~\cite{kulesza2015principles, kulesza2011oriented, amershi2012regroup} as their underlying algorithm because of its interpretability.
-Such algorithms are well known for using the occurrence frequencies of n-grams. 
-However, we are yet to understand how humans make their judgments, and if inputing their decision making procedure into the originally fully automated training process is indeed beneficial.
-In fact, humans could determine the effectiveness of certain features based on evidences other than occurrence frequencies
-This means the human-chosen features could be dramatically different from, and potentially not understandable for machine learning models.
+Such algorithms are well known for using the bag-of-words models such as frequencies of n-grams. However, we suspect that humans make their judgments with different models, and thus attempting to fit their decision making procedure into the original automated training process is questionably beneficial. Human chosen features could be dramatically different from, and potentially not transferrable to machine learning models.
 
 Understanding the human procedure is crucial for building effective iML systems.
-By comparing and articulating the differences between the classification process of humans and computers, we could fulfill the mysterious gap between ``what humans could provide'' and ``what computers could intake''.
-Instead of merely providing features that us humans identify as ``suppose to work'' and iterate through the tedious ``trial-and-error'' procedure, such understanding could guide humans to pinpointedly contribute their domain knowledge in a way that the machines could most efficiently acquire. 
+By comparing and articulating the differences between the classification process of humans and computers, we seek to model the divide between ``what humans can provide'' and ``what computers can intake''.
+Instead of merely providing features that us humans identify from an arbitrary personal measure and iterating through the tedious ``trial-and-error'' procedure, such understanding could guide humans to pinpointedly contribute their domain knowledge in a way that the machines could most efficiently acquire. 
+
 Our project, therefore, seeks to understand the human feature engineering procedure.
 We choose to work in the domain of sentiment analysis, as it is one of the most important and fundamental classification task, and that it is intuitive enough so that human understandings will not obstruct our learning.
 Specifically, we aim to explore two things: (1) how do human understandings for document sentiment map onto single words, and (2) if we could effective extract real ``human features'', or the understanding-word mappings mentioned, through certain workflows.
@@ -202,8 +198,7 @@ All the games support simultaneous collection of document labels and features to
 By manipulating the users' possible inputs and their access to information in each game, we try to indirectly learn and verify latent features humans actually use. 
 Deploying the games to Amazon Mechanical Turk, we prove that our games could successfully help collect various sets of human features (e.g., the smallest set that could facilitate the decision making versus the most inclusive set that makes an instance classifiable for humans), and evaluate the how different incentives affect participants' feature extraction. 
 
-We conclude through the analysis that \todo{Summarize the analysis result.}
-
+We conclude through the analysis that \todo{Summarize the analysis result when done.}
 
 Our contributions are as follows:
 \begin{compactitem}
@@ -279,12 +274,10 @@ The detailed descriptions are as follows.
 \end{figure*}
 
 \paragraph{Direct-Annotation} 
-This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words). The player gets a bonus of \$0.05 for each round.
-It simulates the general feature selection interface, and serves as a benchmark system for comparison. 
+This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words) according to their own judgement. The player gets a bonus of \$0.05 for each document annotated. It simulates the general feature selection interface, and serves as a benchmark system for comparison. 
 
 \paragraph{Bingo} 
-Bingo requires players to work together.
-Players will be randomly paired, and while both players will label the document and extract informative words, they can only complete one round of game when both players reach an agreement on four informative words.
+Bingo requires players to work together. Players will be randomly paired, and while both players will label the document and extract informative words, they can only complete one round of game when both players reach an agreement on four informative words.
 One player can win up to \$0.06 for each document.
 He or she will win \$0.03 for each document finished, and another \$0.03 if the players successfully ``Bingo'' with the partner.
 
@@ -293,15 +286,13 @@ Such constraint forces players to externalize the feature selection procedure.
 By implicitly asking them to consider the other player, we would like to evaluate if social consensus leads to lower variance in the collected features.
 
 \paragraph{Hangman-Add} 
-Players in this game are assigned as annotator and guesser. The annotator label the document and provides a list of ranked informative words to assist the guesser to guess the document sentiment. Game result counts on how many words are used and whether the guesser result agree with the annotator's label.
+Players in this game are assigned as annotator and guesser. The annotator labels the document providing a list of ranked informative words to assist the guesser to guess the document sentiment. The guesser may acquire words in order. The game result depends on how many words are used and whether the guesser label agrees with the annotator's label.
 
 Both the annotator and the guesser receive the same amount of payment.
-Each can win up to \$0.1 for one document. 
-The \$0.1 is split into three categories: 
-\begin{compactitem}
-	\item \textbf{Thanks for participation: } \$0.01 for each document finished.
-	\item \textbf{Agreement reward: } \$0.02 if the two players agree on the review sentiment.
-	\item \textbf{You needed less clues: } up to \$0.07 if the guesser asks for less words. The first word asked is free, and every additional word costs \$0.01. In other words, if $n$ words are asked, the bonus will be $0.07-0.01(n-1)$.
+Each can win up to \$0.1 for one document:\begin{compactitem}
+	\item \textbf{Participation: } \$0.01 for each document finished.
+	\item \textbf{Agreement: } \$0.02 if the two players agree on the review sentiment.
+	\item \textbf{Brevity Incentive: } up to \$0.07 if the guesser asks for fewer words. The first word is free, and every additional word costs \$0.01. In other words, if $n$ words are asked, the bonus will be $0.07-0.01(n-1)$.
 \end{compactitem}
 
 This game, while still being collaborative, verifies how informative a set of selected features are by having an additional human verifier to judge the sentiment with only the features. 
@@ -311,7 +302,7 @@ We view it as an alternative to collect the smallest set needed to determine the
 
 
 \paragraph{Hangman-Subtract} 
-\todo{When this is really implemented I will need to explain the viz.}
+\todo{When this is implemented I will need to explain the viz.}
 This is a competitive game where the two players are assigned as roles masker and guesser. The masker is asked to label the document and mask informative words that are important to his decision. The masker's goal is to hinder the guess to figure out the correct the document sentiment and the guesser is asked to guess document based on the masked document. 
 
 Such a competitive game requires a more sophisticated incentive matching in terms of the bonus allocation. Broadly speaking, we want the masker to win when he or she has masked a reasonable amount of words, and we want to prevent him/her from masking all or none of the words. 
@@ -322,23 +313,23 @@ Such \$0.45 is equally allocated to every word masked ($N$ in total).
 Assume the guesser has unmasked $n$ of them when he/she guesses ($n \leq N$):
 
 \begin{compactitem}
-	\item \textbf{Guesser win: } If the guesser labels the document correctly, the guesser gets all the bonus associated with the still masked words, or the ones that he/she has not use ($\$0.45\cdot (N-n) / N$). The masker gets all the unmasked ones ($\$0.45\cdot n / N$). 
-	\item \textbf{Guesser loss: } If the guesser labels the document incorrectly, the guesser gets no bonus, and the annotator gets the bonus for all the words not getting masked currently proportional to the number of total token $m$ ($\$0.45\cdot (m-N+n) / m$).
+	\item \textbf{Guesser win: } If the guesser labels the document correctly, the guesser gets all the bonus associated with the still masked words, or the ones that he/she has not use ($\$0.45\cdot (N-n) / N$). The masker gets a bonus for all the unmasked ones ($\$0.45\cdot n / N$). 
+	\item \textbf{Guesser loses: } If the guesser labels the document incorrectly, the guesser gets no bonus, and the annotator gets the bonus for all the words that were not masked currently proportional to the total number of tokens in the document $m$ ($\$0.45\cdot (m-N+n) / m$).
 \end{compactitem}
 
 As the name indicates, it shares similar structures with \emph{Hangman-add}: 
-Both of them requires one person to annotate informative words, and another person guessing the sentiment. 
+Both of them requires one person to annotate informative words, and another person to  guess the sentiment. 
 The only difference is what the guessing side starts with: 
 In addition to the informative words that can be queried/unmasked, \emph{Hangman-Subtract} provides the document structure to guessers, and let them decide the sequence of ``unlocking'' the informative words. 
-We would like to see how ``unfeatured'' words, which are entirely ignored by machines, affect users behavior: Can users determine which informative words could be more informative than others based on their positions?
-Another bonus collection of this game is an inclusive set of informative words. 
-We could potentially evaluate the number of words on average needed to be removed to confuse people, as long as we take the subject-bias and document-bias into account.
+We would like to see how ``non-feature'' words, which are entirely ignored by machines, affect users behavior: Can users determine which informative words could be more informative than others based on their positions?
+
+Through this game we can also collect an inclusive set of informative words. We could potentially evaluate the number of words on average needed to be removed to confuse people, as long as we take the subject-bias and document-bias into account. This is informative in understanding the base amount of features required for correct document labelling.
 
 \paragraph{Censor}
-\emph{Censor} is the advanced version of \emph{Hangman-Subtract}. 
-While in \emph{Hangman-Subtract}, each masked word is automatically assigned a equal cost, the masker can manually allocate the fixed budget \$0.45 to all the words masked, and the guesser will need to pay the cost accordingly to unmask the word. 
-We would like to understand how players balance the budget and the information they gain. 
-For instance, if the seemingly most informative word has a high cost, will the guesser compensate by choosing the less informative ones? 
+\emph{Censor} is a developed version of \emph{Hangman-Subtract}. 
+While in \emph{Hangman-Subtract}, each masked word is automatically assigned a equal cost, in \emph{Censor}, the masker can manually allocate the fixed budget \$0.45 to all the words masked, and the guesser will need to pay the cost accordingly to unmask the word (the cost will be displayed to the guesser). 
+
+In this experiment we would like to understand how players balance the budget and weight the importance of terms along with the information gain from knowing such weights. For instance, if the seemingly most informative word has a high cost, will the guesser compensate by choosing the less informative ones? 
 
 \begin{table*}
 \footnotesize
@@ -418,14 +409,24 @@ Censor
 \end{table*}
 
 \section{Experiment}
-\subsection{Implementation and Deployment}
-\todo{Sth more...}
-The games are implemented as web applications on top of TurkServer~\cite{turkserver}.
-Following its setting, we used Metoer as the client, and MongoDB as the database. 
+\subsection{Implementation}
+We chose to use TurkServer~\cite{turkserver} to implement our games. Each game is designed to be an independent application run sequentially and thus recruiteed users participate in one specific type of game in their session. Each round of the game contains 1 document and is considered to be an experiment instance in TurkServer. Following from TurkServer, Meteor is used as the web framework and Bootstrap components as well as custom CSS were used to design the user interface. 
+
+Due to the nature of the questions and game, each participant of a game type cannot work on the same document as a different role to prevent carry over knowledge. To simplify the process, we only allow a worker to participate in a game involving a particular document once.
+
+In \emph{Direct-Annotation}, workers independently work on a set of tasks and will proceed sequentially through experiments until the tasks are exhausted. This is managed through a \texttt{SingleGameAssginer}. In \emph{Bingo}, a synchronous pairing system \texttt{PairGameAssigner} is used. Workers will wait in the lobby until there is an available user (having a shared document they both have not yet labelled) and will then be promptly matched into an experiment instance. Workers completing the experiment will re-enter the lobby for a next round of matching. Workers may voluntarily exit after 5 rounds are completed and no partners are available or wait for a new partner instead. In \emph{Hangman-Add}, the annotator and guesser can be asynchronously matched through an \texttt{AsyncGameAssigner}. Workers are assigned a role for each round. Guessers will be replayed the list from previous annotations. Each experiment consists only of one user with their virtually matched partner.  The remaining two systems, \emph{Hangman-Subtract} and \emph{Censor} use a similar system with the difference being that the roles are assigned on task acceptance and an annotater stays within a single experiment for the duration of their playtime. Annotators can adjust their annotations according to system feedback stats (guesser accuracy etc.) on their annotations. Guessers will attempt to label the masked documents by using a current mask set from some annotator.
+
 The visual feedback in \emph{Hangman-Subtract} and \emph{Censor} is implemented with d3js.
 
-Our games are deployed through Amazon Mechanical Turk.
+\subsection{Deployment}
+Our games are deployed through Amazon Mechanical Turk with the following qualifications:
+\begin{compactitem}
+\item $95\%$ Overall Accuracy
+\item $> 100$ HITs completed
+\item US or CAN worker
+\end{compactitem}
 
+For each experiment, we deployed a TurkServer HIT with 20 distinct participants while disallowing  re-entry of past participants. Bonuses were paid out at the end of the experiment. 
 
 \subsection{Context} 
 While our games can be generally used for text classification tasks, we ask the workers to perform sentiment analysis on IMDB movie reviews~\cite{alsallakh2014visual} in our experiment. 
@@ -436,10 +437,10 @@ We choose such a task because
 In our task, we manually selected thirty reviews, 17 positive ones and 13 negative ones.
 We manually coded the difficulty of each movie review based on our empirical understanding, and made sure the the difficulty is evenly distributed. 
 
-\section{Data Analysis} 
+\section{Data Collection} 
 \label{sec:analysis}
 
-\subsection{Log data} 
+\subsection{Recorded data} 
 The set of features that can be collected from different games are presented below. 
 
 \begin{center}
@@ -459,10 +460,20 @@ Features-verify &  & \textbullet & \textbullet & \textbullet  \\\hline
 
 {\emph{Labels-full} refers to whether we can extract sentiment label from the game, \emph{labels-verify} refers to whether the game supports different players to verify their label result, \emph{feature-init} refers to whether the game obtains features provided by the gamer, \emph{feature-rank} refers to whether obtained features are ranked, \emph{feature-refine} refers to whether the player can refine initially collected feature, and \emph{feature-verify} refers to whether features are verified though multiple players.}
 
-\section{Post-Questionnare}
-Besides the log data, we have also asked the workers to fill in a post-task questionnare. We asked them to evaluate the engagement (``\emph{The game is engaging}'') and intuitiveness (``\emph{I could complete the game easily}'') of the game they played. 
+\section{Exit Survey}
+Besides the log data, we have also asked the workers to fill in a post-task questionnare (exit survey). We asked them to evaluate the engagement (``\emph{The game is engaging}'') and intuitiveness (``\emph{I could complete the game easily}'') of the game they played. 
 Additionally, as all the games except for the benchmark, \emph{Direction-Annotation}, are paired games, we also asked them to evaluate the social impact by scoring ``\emph{I care about my partner's performance greatly}''.
-\todo{Add result}
+
+\section{Results}
+\subsection{Label Accuracy}
+Since some games constrain human understanding against a limited feature system, we expect to see that
+\todo{Finish}
+
+\subsection{Features}
+\todo{Write}
+
+\subsection{Engagement}
+\todo{Write}
 
 \section{Conclusion}
 
