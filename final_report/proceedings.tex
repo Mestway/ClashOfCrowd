@@ -1,0 +1,343 @@
+\documentclass[chi_draft]{sigchi}
+
+% Use this section to set the ACM copyright statement (e.g. for
+% preprints).  Consult the conference website for the camera-ready
+% copyright statement.
+
+% Copyright
+%\CopyrightYear{2016}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+% DOI
+%\doi{http://dx.doi.org/10.475/123_4}
+% ISBN
+%\isbn{123-4567-24-567/08/06}
+%Conference
+%\conferenceinfo{CHI'16,}{May 07--12, 2016, San Jose, CA, USA}
+%Price
+%\acmPrice{\$15.00}
+
+% Use this command to override the default ACM copyright statement
+% (e.g. for preprints).  Consult the conference website for the
+% camera-ready copyright statement.
+
+%% HOW TO OVERRIDE THE DEFAULT COPYRIGHT STRIP --
+%% Please note you need to make sure the copy for your specific
+%% license is used here!
+\toappear{
+% Permission to make digital or hard copies of all or part of this work
+% for personal or classroom use is granted without fee provided that
+% copies are not made or distributed for profit or commercial advantage
+% and that copies bear this notice and the full citation on the first
+% page. Copyrights for components of this work owned by others than ACM
+% must be honored. Abstracting with credit is permitted. To copy
+% otherwise, or republish, to post on servers or to redistribute to
+% lists, requires prior specific permission and/or a fee. Request
+% permissions from \href{mailto:Permissions@acm.org}{Permissions@acm.org}. \\
+% \emph{CHI '16},  May 07--12, 2016, San Jose, CA, USA \\
+% ACM xxx-x-xxxx-xxxx-x/xx/xx\ldots \$15.00 \\
+% DOI: \url{http://dx.doi.org/xx.xxxx/xxxxxxx.xxxxxxx}
+}
+
+% Arabic page numbers for submission.  Remove this line to eliminate
+% page numbers for the camera ready copy
+% \pagenumbering{arabic}
+
+% Load basic packages
+\usepackage{balance}       % to better equalize the last page
+\usepackage{graphics}      % for EPS, load graphicx instead 
+\usepackage[T1]{fontenc}   % for umlauts and other diaeresis
+\usepackage{txfonts}
+\usepackage{mathptmx}
+\usepackage[pdflang={en-US},pdftex]{hyperref}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage{textcomp}
+
+% Some optional stuff you might like/need.
+\usepackage{microtype}        % Improved Tracking and Kerning
+% \usepackage[all]{hypcap}    % Fixes bug in hyperref caption linking
+\usepackage{ccicons}          % Cite your images correctly!
+% \usepackage[utf8]{inputenc} % for a UTF8 editor only
+
+% If you want to use todo notes, marginpars etc. during creation of
+% your draft document, you have to enable the "chi_draft" option for
+% the document class. To do this, change the very first line to:
+% "\documentclass[chi_draft]{sigchi}". You can then place todo notes
+% by using the "\todo{...}"  command. Make sure to disable the draft
+% option again before submitting your final document.
+\usepackage{todonotes}
+\usepackage{paralist}
+\usepackage{lscape}
+
+% Paper metadata (use plain text, for PDF inclusion and later
+% re-using, if desired).  Use \emtpyauthor when submitting for review
+% so you remain anonymous.
+\def\plaintitle{Clash of Crowds: Understanding Human \\ Text Classification though Crowdsourcing Games}
+\def\plainauthor{First Author, Second Author, Third Author,
+  Fourth Author, Fifth Author, Sixth Author}
+\def\emptyauthor{}
+\def\plainkeywords{Authors' choice; of terms; separated; by
+  semicolons; include commas, within terms only; required.}
+\def\plaingeneralterms{Documentation, Standardization}
+
+% llt: Define a global style for URLs, rather that the default one
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{
+    \def\UrlFont{\sf}
+  }{
+    \def\UrlFont{\small\bf\ttfamily}
+  }}
+\makeatother
+\urlstyle{leo}
+
+% To make various LaTeX processors do the right thing with page size.
+\def\pprw{8.5in}
+\def\pprh{11in}
+\special{papersize=\pprw,\pprh}
+\setlength{\paperwidth}{\pprw}
+\setlength{\paperheight}{\pprh}
+\setlength{\pdfpagewidth}{\pprw}
+\setlength{\pdfpageheight}{\pprh}
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\usepackage{paralist}
+\newcommand{\pro}[1]{\text{#1}}
+\newcommand{\con}[1]{\text{#1}}
+
+% Make sure hyperref comes last of your loaded packages, to give it a
+% fighting chance of not being over-written, since its job is to
+% redefine many LaTeX commands.
+\definecolor{linkColor}{RGB}{6,125,233}
+\hypersetup{%
+  pdftitle={\plaintitle},
+% Use \plainauthor for final version.
+%  pdfauthor={\plainauthor},
+  pdfauthor={\emptyauthor},
+  pdfkeywords={\plainkeywords},
+  pdfdisplaydoctitle=true, % For Accessibility
+  bookmarksnumbered,
+  pdfstartview={FitH},
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=linkColor,
+  breaklinks=true,
+  hypertexnames=false
+}
+
+% create a shortcut to typeset table headings
+% \newcommand\tabhead[1]{\small\textbf{#1}}
+
+% End of preamble. Here it comes the document.
+\begin{document}
+
+\title{\plaintitle}
+
+\numberofauthors{1}
+\author{%
+  \alignauthor{Tongshuang Wu \quad Jim Chen \quad Chenglong Wang\\
+    \affaddr{University of Washington, USA}\\
+    \email{\textsf{\{wtshuang, cqz, clwang\}@cs.washington.edu}}
+    }\\
+}
+
+\maketitle
+
+%\begin{abstract}
+
+%\end{abstract}
+
+%\category{H.5.m.}{Information Interfaces and Presentation
+%  (e.g. HCI)}{Miscellaneous} \category{See
+%  \url{http://acm.org/about/class/1998/} for the full list of ACM
+%  classifiers. This section is required.}{}{}
+
+%\keywords{\plainkeywords}
+
+\section{Introduction}
+
+In order to design interactive machine learning systems that better coordinate human and computer, system designers need to have a good understanding on how human and computer make their decisions \todo{add some citation to justify this}. For example, in order to design a interactive machine learning system for text sentiment classification, one needs to know which words in the text are features used by humans and computers to make their decisions (whether a document is positive or negative). While features used by machine learning algorithms, e.g., n-gram model, are well understood, little is know about what are the text features used by human in their decision making process. Our project seeks to understand the human labeling process (the connection between labels created by human and feature words influence them most in the labeling process) in the context of \emph{text sentiment labeling tasks}. 
+
+Prior work \todo{add citation} seeks to understand features that human used in labeling text sentiment by mapping users' mental model into concrete words in the document; the approach used to collected such feature words (i.e., ``human features'') is to directly ask users to (1) label a document and (2) then select words associated with this decision it. While such techniques are straightforward and easy to collect, it is unclear whether such features suffer from the ``hindsight bias'' effect of human labelers: post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts. If such effect exists, collected labels and features are not guaranteed to be naturally paired.
+
+In order to collect more meaningful features and provides better explanation of the these features, our key insight is to collect features along with labels during the labeling procedure though interactive games. Concretely, we designed a set of 5 crowd sourcing games: \emph{DirectAnnotation}, \emph{Bingo}, \emph{HangmanAdd}, \emph{HangmanSub} and \emph{Censor}. While these games share the same goal, players in different games have different ways to access information in target documents. These controlled variance in the game lets us both collecting and verifying features and labels for every target document, as we will present later in Section~\ref{}. Though our implementation and deployment of the game, we observed the following set of facts that can potentially be used to guide interactive machine learning system design. \todo{add a few descriptions}
+
+The rest of the report structured as follows: (1) the text classification task we aim to solve (Section~\ref{sec:task}), (2) our game designs, (3) our deployment of the games and evaluation.
+
+\section{Task Selection}
+\label{sec:task}
+
+The text classification task used in our paper is sentiment labeling for IMDB movie reviews. Labeling sentiment of movie reviews is a challenge task since (1) many reviews contain humorous or ironic elements that makes the movie sentiment orientation tricky to identify, and (2) movie reviews are self labeled: sentiment labeling of them are directly posted along with the review, which makes the training data and ground truth easy to obtain.
+
+\todo{Add some more description of the review?}
+
+\section{Game Design} 
+
+We have designed the following fives games to collect text sentiment labels and features from players; their interfaces are shown in Figure~\ref{fig:game-interface}.
+
+\begin{figure*}[t]
+\includegraphics[width=\linewidth]{gamepreview.pdf}
+\caption{Interface of DirectAnnotate, Bingo, HangmanAdd and HangmanSubtract}
+\label{fig:game-interface}
+\end{figure*}
+
+\begin{itemize}
+\item \emph{DirectAnnotate}. This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words).
+\item \emph{Bingo}. This is the game where two players coop on labeling document sentiment and extract informative words. The game requires labels collected from the team are the same, and the game is finished when two players reach an agreement on four informative words. 
+\item \emph{HangmanAdd}. Players in this game are assigned as annotator and guesser. The annotator label the document and provides a list of ranked informative words to assist the guesser to guess the document sentiment. Game result counts on how many words are used and whether the guesser result agree with the annotator's label.
+\item \emph{HangmanSubtract}. This is a competitive game where the two players are assigned as roles masker and guesser. The masker is asked to label the document and mask informative words that are important to his decision. The masker's goal is to hinder the guess to figure out the correct the document sentiment and the guesser is asked to guess document based on the masked document. (The guesser can unmask words with the reduction on the payment bonus and the masker earn more if labeled less but more effective.) 
+\item \emph{Censor}. \todo{add its content}
+\end{itemize}
+
+Our games are designed based the three criteria below, and our game design details are presented in Table~\ref{table:game}.
+
+\begin{itemize}\itemsep-1pt
+  \item \emph{Data quality}: Players of the game should be table to collect less noisy or biased labels and features through the game, and preferably, collected features can be verified.
+  \item \emph{Difficulty}: The game should be fairly intuitive to play and should not overwhelm the players. 
+  \item \emph{Compatible incentive}: The incentives for different players, either in competitive or collaborative games, should be compatible such that neither sides have shortcuts and could play in a fair setting.
+\end{itemize}
+
+\begin{table*}
+\footnotesize
+\centering
+\begin{tabular}{|p{0.08\paperwidth} |p{0.07\paperwidth} |p{0.13\paperwidth} |p{0.3\paperwidth} |p{0.18\paperwidth}|}
+\hline
+\textbf{Game\/System} & \textbf{Player} & \textbf{Mechanism} & \textbf{Pros\&Cons} & \textbf{Compatible Incentive} 
+\\  \hline 
+%%
+\tabincell{l}{Direct\\Annotation\\(Baseline)}
+& 1P & Directly ask users to choose features they used. 
+& \begin{compactitem}
+ \item[$+$] \pro{Access to the full doc}
+ \item[$-$] \con{* Hindsight bias}
+ \item[$-$] \con{* No checks}
+ \end{compactitem}
+& N/A (not a game) 
+\\  \hline 
+%%
+Bingo 
+& \tabincell{l}{2P,\\Collab} 
+& Two users annotate one document. Score when they label the same feature. 
+& \begin{compactitem}
+ \item[$+$] \pro{* Less noisy}
+ \item[$+$] \pro{Access to the full doc} 
+ \item[$-$] \con{* Hindsight bias}
+ \item[$-$] \con{* Low representation of individual users}
+ \end{compactitem}
+& Reward Mutual agreement
+\\ \hline 
+%% 
+\tabincell{l}{Hangman,\\\emph{Additive}}
+& \tabincell{l}{2P,\\Collab} 
+& \textbf{Guesser} asks for a word from annotator. \textbf{Annotator} returns a word to the guesser.
+& \begin{compactitem}
+ \item[$+$] \pro{* Mediate hindsight bias}
+ \item[$+$] \pro{Engaging} 
+ \item[$-$] \con{Takes more time}
+ \item[$-$] \con{Guesser cannot access document structure}
+ \end{compactitem}
+& \begin{compactitem}[-]
+ \item Reward agreement
+ \item Penalize queries used
+ \end{compactitem}
+\\ \hline
+%%
+Censor
+& \tabincell{l}{2P,\\Compete} 
+& \textbf{Censors} mask words in a document.
+\textbf{Identifiers} label the censored document.
+& \begin{compactitem}
+ \item[$+$] \pro{* Keep doc structure}
+ \item[$+$] \pro{* Mediate hindsight bias} 
+ \item[$+$] \pro{Engaging and easy}
+ \item[$-$] \con{Can't reuse identifiers}
+ \item[$-$] \con{Need to retain censors}
+ \end{compactitem}
+& \tabincell{l}{\textbf{Censors}: \\Reward fooling users\\\textbf{Identifiers}: \\Reward for being correct}
+\\ \hline
+%%
+\tabincell{l}{Hangman,\\\emph{Subtractive}}
+& \tabincell{l}{2P,\\Compete} 
+& \textbf{Censors} remove a set of words from a document.
+\textbf{Guesser} queries one word at a time (can choose position).
+& \begin{compactitem}
+ \item[$+$] \pro{* Keep doc structure}
+ \item[$+$] \pro{* Mediate hindsight bias} 
+ \item[$+$] \pro{Engaging and easy}
+ \item[$-$] \con{Can't reuse guessers}
+ \item[$-$] \con{More mental load balancing prices}
+ \end{compactitem}
+& \tabincell{l}{\textbf{Censors}: \\Reward fooling users\\\textbf{Identifiers}: \\Reward for being correct}
+\\ \hline
+\end{tabular}
+\caption{Designed games. Pros and Cons with ``*'' are the attributes affecting data quality. In the table, \emph{Game Mode} indicates the number of the players in the game and whether it is collaborative or competitive, \emph{Mechanism} presents how labels and features are obtained from the player through the game, \emph{Pros\&Cons} shows what is the game designs strength and weakness and \emph{Incentive Mechanism} indicates what makes the game incentive to the players.}
+\label{table:game}
+\end{table*}
+
+\section{Implementation \& Deployment} Our games are deployed through....\todo{add details}
+
+\section{Data Analysis} 
+
+\paragraph{Collected Features} The set of features that can be collected from different games are presented below. 
+
+\begin{center}
+\begin{tabular}{|c|cccc|}
+\hline
+Data  & Ann. & Bin. &  H.Add  &   H.Sub   \\
+ \hline
+Labels-full & \textbullet & \textbullet & \textbullet & \textbullet  \\
+Labels-verify &  & $\circ$ & \textbullet & \textbullet  \\
+Features-init & \textbullet & \textbullet & \textbullet & \textbullet  \\
+Features-rank &  & \textbullet & \textbullet & \textbullet  \\
+Features-refine &  &  &  & \textbullet  \\
+Features-verify &  & \textbullet & \textbullet & \textbullet  \\\hline
+\end{tabular}
+\end{center}
+
+{\emph{Labels-full} refers to whether we can extract sentiment label from the game, \emph{labels-verify} refers to whether the game supports different players to verify their label result, \emph{feature-init} refers to whether the game obtains features provided by the gamer, \emph{feature-rank} refers to whether obtained features are ranked, \emph{feature-refine} refers to whether the player can refine initially collected feature, and \emph{feature-verify} refers to whether features are verified though multiple players.}
+
+\section{Conclusion}
+
+\section{Future Work}
+
+
+% Balancing columns in a ref list is a bit of a pain because you
+% either use a hack like flushend or balance, or manually insert
+% a column break.  http://www.tex.ac.uk/cgi-bin/texfaq2html?label=balance
+% multicols doesn't work because we're already in two-column mode,
+% and flushend isn't awesome, so I choose balance.  See this
+% for more info: http://cs.brown.edu/system/software/latex/doc/balance.pdf
+%
+% Note that in a perfect world balance wants to be in the first
+% column of the last page.
+%
+% If balance doesn't work for you, you can remove that and
+% hard-code a column break into the bbl file right before you
+% submit:
+%
+% http://stackoverflow.com/questions/2149854/how-to-manually-equalize-columns-
+% in-an-ieee-paper-if-using-bibtex
+%
+% Or, just remove \balance and give up on balancing the last page.
+%
+%\balance{}
+
+% REFERENCES FORMAT
+% References must be the same font size as other body text.
+\bibliographystyle{SIGCHI-Reference-Format}
+\bibliography{sample}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
