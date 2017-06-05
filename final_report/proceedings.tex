@@ -177,7 +177,7 @@ One of the potential barriers here is that we have little have been known how ef
 This is because of two reasons: 
 
 First, current feature selection procedures may not reflect the real reasoning procedures of feature engineers.
-Prior work \todo{add citation} seeks to understand features that human use by mapping users' mental model into concrete words in the document. The approach used to collected such feature words (i.e., ``human features''), take sentiment analysis for example, is to directly ask users to (1) label a document and (2) then select words associated with this decision it. 
+Prior work (e.g.,~\cite{trivedi2015interactive}) seeks to understand features that human use by mapping users' mental model into concrete words in the document. The approach used to collected such feature words (i.e., ``human features''), take sentiment analysis for example, is to directly ask users to (1) label a document and (2) then select words associated with this decision it. 
 While such techniques are straightforward and easy to collect, it is unclear whether features collected in this way suffer from the ``hindsight bias'' effect of human labelers. 
  ~\cite{gazzaniga2013integrated} has proved that people are generally poor at introspecting on the signals they use to make decisions.
 In other words, post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts. If such effect exists, collected labels and features are not guaranteed to be naturally paired.
@@ -223,20 +223,26 @@ Our contributions are as follows:
 
 \section{Related Work}
 \label{sec:relatedWork}
-\todo{related workd}
 %What existing understanding of the problem has been developed?
 %For a research proposal, this will briefly cover the most important related work in the space you are exploring.
 %For a design proposal, this will introduce existing solutions, why they fall short, and the potential opportunity.
 
-\subsection{Interactive Machine Learning}
-Interactive machine learning systems mainly try to either explain the corresponding models~\cite{ren2017squares, alsallakh2014visual}, or to accept feedback from users in order to improve or customize the model, or to compensate the lack of data.
+\subsection{Feature Engineering in iML}
+Feature engineering is one of the two main approaches to manipulate and adjust machine learning models.
+Feature engineering systems would ask users to specify the included features or the feature weights based on their domain knowledge: INFUSE~\cite{krause2014infuse} visualize results of multiple feature selection algorithms to help users comprehensively understand select the most effective features, FeatureInsight~\cite{brooks2015featureinsight} supports building new dictionary features (semantically related groups of words) for text classification problems, and EMR VisWeb~\cite{trivedi2015interactive} enables clinical researchers to review and annotate clinical text.
+Besides such end-user centered systems, some studies also try to enhance Machine Learning practitioners' experience browsing the data. For instance, Hoffmann et al. designed multiple strategies to supports experts to rapidly brainstorm rules for information extraction~\cite{hoffmann2015extreme}.
 
-The manipulations fall into two categories: 
-\emph{labeling}, where users provide more training data to the model (e.g., ELUCIDEBUG~\cite{kulesza2015principles}, Visual Classifier Training~\cite{heimerl2012visual}), and \emph{feature engineering}, where users specify the included features or the feature weights based on their domain knowledge (e.g., INFUSE~\cite{krause2014infuse}, FeatureInsight~\cite{brooks2015featureinsight}).
-More examples can be found in surveys~\cite{Brown2016HumanMachineLearnerIT}. 
-Though Tam et al.~\cite{tam2017analysis} mentioned that when constructing a decision tree, compared to the machine, humans are more capable in looking ahead into the long-term effect of setting one node, understanding combined feature effects, and incorporating domain knowledge into their decision process.
-However, little work has been done in understanding if such domain knowledge provided reflect people's over-confidence in themselves or how they are (not) aligned with the automatically learned knowledge. 
-This is the main focus of our work.
+While such work makes users engineer features more efficiently, the effectiveness is yet to be improved.
+Some work~\cite{fiebrink2011human,stumpf2009interacting, patel2008investigating} has proved that human intersections in general, including feature selection, sometimes tend to hurt the performance of a classifier. 
+The proposed problems is that users' manipulation could either over- or under- constraint the feature space.
+The more essential problem here is the mismatch between the features provided by humans and the ones machines need to learn about. 
+As the features needed by the machines have been well studied with automated feature selection algorithms~\cite{empirical}, we focus on understanding human feature selection procedure here to fill the gap. 
+
+The most related work to ours is Flock~\cite{cheng2015flock}, which presents a technique to crowdsource features for machine-learning classifiers.
+In their paper, Cheng et al. made a similar argument to ours that people struggle to articulate what led them to make their decision, and therefore proposed to collect crowd workers' reasoning with free-text.
+While they provided a novel approach to generate features, the open-ended summary allows too much freedom for building a real model, resulting in subjective and non-machine-extractable features.
+We instead gamify the labeling and feature selection procedure, so to collect ``human features'' in a constrained form (in this case, individual words) that can be directly incorporated into machines.
+
 
 \subsection{Human Computation Games}
 
@@ -363,7 +369,8 @@ Censor
 
 \section{Data Analysis} 
 
-\paragraph{Collected Features} The set of features that can be collected from different games are presented below. 
+\subsection{Collected Features} 
+The set of features that can be collected from different games are presented below. 
 
 \begin{center}
 \begin{tabular}{|c|cccc|}
