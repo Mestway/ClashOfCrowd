@@ -151,9 +151,12 @@
 
 \maketitle
 
-%\begin{abstract}
-
-%\end{abstract}
+\begin{abstract}
+While feature extractions and selections have become popular in the field of interactive Machine Learning, 
+little has been known how effective such human intersections are. 
+In this work, we indirectly learn and verify latent features humans actually use by gamifying the simultaneous labeling and feature selection procefure.
+By comparing four crowdsourcing games with a benchmark system and between each other, we hope to explore if and how human judgments could effectively inform machine learning models.
+\end{abstract}
 
 %\category{H.5.m.}{Information Interfaces and Presentation
 %  (e.g. HCI)}{Miscellaneous} \category{See
@@ -164,13 +167,87 @@
 
 \section{Introduction}
 
-In order to design interactive machine learning systems that better coordinate human and computer, system designers need to have a good understanding on how human and computer make their decisions \todo{add some citation to justify this}. For example, in order to design a interactive machine learning system for text sentiment classification, one needs to know which words in the text are features used by humans and computers to make their decisions (whether a document is positive or negative). While features used by machine learning algorithms, e.g., n-gram model, are well understood, little is know about what are the text features used by human in their decision making process. Our project seeks to understand the human labeling process (the connection between labels created by human and feature words influence them most in the labeling process) in the context of \emph{text sentiment labeling tasks}. 
+%Identifying predictive features is key to creating effective machine learning classifiers. 
+Interactive feature selection has become one of the mainstreams in interactive Machine Learning (iML).
+Current classification systems have been taking advantage of human judgments to select predictive features to build effective machine learning models~\cite{brooks2015featureinsight, cheng2015flock}. 
+\todo{For instance??}
+While researchers have argued that human could contribute their domain knowledge to the models~\cite{stumpf2009interacting}, studies have frequently proved that human intersections are not as effective as we have hoped. 
+In fact, such intersections have caused the performances of multiple models to decrease~\cite{fiebrink2011human,stumpf2009interacting}.
+One of the potential barriers here is that we have little have been known how effective are the human inputs.
+This is because of two reasons: 
 
-Prior work \todo{add citation} seeks to understand features that human used in labeling text sentiment by mapping users' mental model into concrete words in the document; the approach used to collected such feature words (i.e., ``human features'') is to directly ask users to (1) label a document and (2) then select words associated with this decision it. While such techniques are straightforward and easy to collect, it is unclear whether such features suffer from the ``hindsight bias'' effect of human labelers: post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts. If such effect exists, collected labels and features are not guaranteed to be naturally paired.
+First, current feature selection procedures may not reflect the real reasoning procedures of feature engineers.
+Prior work \todo{add citation} seeks to understand features that human use by mapping users' mental model into concrete words in the document. The approach used to collected such feature words (i.e., ``human features''), take sentiment analysis for example, is to directly ask users to (1) label a document and (2) then select words associated with this decision it. 
+While such techniques are straightforward and easy to collect, it is unclear whether features collected in this way suffer from the ``hindsight bias'' effect of human labelers. 
+ ~\cite{gazzaniga2013integrated} has proved that people are generally poor at introspecting on the signals they use to make decisions.
+In other words, post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts. If such effect exists, collected labels and features are not guaranteed to be naturally paired.
 
-In order to collect more meaningful features and provides better explanation of the these features, our key insight is to collect features along with labels during the labeling procedure though interactive games. Concretely, we designed a set of 5 crowd sourcing games: \emph{DirectAnnotation}, \emph{Bingo}, \emph{HangmanAdd}, \emph{HangmanSub} and \emph{Censor}. While these games share the same goal, players in different games have different ways to access information in target documents. These controlled variance in the game lets us both collecting and verifying features and labels for every target document, as we will present later in Section~\ref{}. Though our implementation and deployment of the game, we observed the following set of facts that can potentially be used to guide interactive machine learning system design. \todo{add a few descriptions}
+Second, we are yet to understand if computers and humans proceed a classification task in the same way. 
+Most of the state-of-art iML systems use linear models like Naive Bayes~\cite{kulesza2015principles, kulesza2011oriented, amershi2012regroup} as their underlying algorithm because of its interpretability.
+Such algorithms are well known for using the occurrence frequencies of n-grams. 
+However, we are yet to understand how humans make their judgments, and if inputing their decision making procedure into the originally fully automated training process is indeed beneficial.
+In fact, humans could determine the effectiveness of certain features based on evidences other than occurrence frequencies
+This means the human-chosen features could be dramatically different from, and potentially not understandable for machine learning models.
 
-The rest of the report structured as follows: (1) the text classification task we aim to solve (Section~\ref{sec:task}), (2) our game designs, (3) our deployment of the games and evaluation.
+Understanding the human procedure is crucial for building effective iML systems.
+By comparing and articulating the differences between the classification process of humans and computers, we could fulfill the mysterious gap between ``what humans could provide'' and ``what computers could intake''.
+Instead of merely providing features that us humans identify as ``suppose to work'' and iterate through the tedious ``trial-and-error'' procedure, such understanding could guide humans to pinpointedly contribute their domain knowledge in a way that the machines could most efficiently acquire. 
+Our project, therefore, seeks to understand the human feature engineering procedure.
+We choose to work in the domain of sentiment analysis, as it is one of the most important and fundamental classification task, and that it is intuitive enough so that human understandings will not obstruct our learning.
+Specifically, we aim to explore two things: (1) how do human understandings for document sentiment map onto single words, and (2) if we could effective extract real ``human features'', or the understanding-word mappings mentioned, through certain workflows.
+
+To achieve this, we transfer the feature extraction workflow into four different games, namely the collaborative games \emph{Bingo} and \emph{Hangman-add}, and the competitive ones \emph{Hangman-subtract} and \emph{Censor}.
+All the games support simultaneous collection of document labels and features to ensure feature-label mapping.
+By manipulating the users' possible inputs and their access to information in each game, we try to indirectly learn and verify latent features humans actually use. 
+Deploying the games to Amazon Mechanical Turk, we prove that our games could successfully help collect various sets of human features (e.g., the smallest set that could facilitate the decision making versus the most inclusive set that makes an instance classifiable for humans), and evaluate the how different incentives affect participants' feature extraction. 
+
+We conclude through the analysis that \todo{Summarize the analysis result.}
+
+
+Our contributions are as follows:
+\begin{compactitem}
+	\item \todo{Statement of Contributions}
+\end{compactitem}
+
+
+%In order to design interactive machine learning systems that better coordinate human and computer, system designers need to have a good understanding on how human and computer make their decisions \todo{add some citation to justify this}. For example, in order to design a interactive machine learning system for text sentiment classification, one needs to know which words in the text are features used by humans and computers to make their decisions (whether a document is positive or negative). While features used by machine learning algorithms, e.g., n-gram model, are well understood, little is know about what are the text features used by human in their decision making process. Our project seeks to understand the human labeling process (the connection between labels created by human and feature words influence them most in the labeling process) in the context of \emph{text sentiment labeling tasks}. 
+
+
+%In order to collect more meaningful features and provides better explanation of the these features, our key insight is to collect features along with labels during the labeling procedure though interactive games. Concretely, we designed a set of 5 crowd sourcing games: \emph{DirectAnnotation}, \emph{Bingo}, \emph{HangmanAdd}, \emph{HangmanSub} and \emph{Censor}. While these games share the same goal, players in different games have different ways to access information in target documents. These controlled variance in the game lets us both collecting and verifying features and labels for every target document, as we will present later in Section~\ref{}. Though our implementation and deployment of the game, we observed the following set of facts that can potentially be used to guide interactive machine learning system design. \todo{add a few descriptions}
+
+
+%The rest of the report structured as follows: (1) the text classification task we aim to solve (Section~\ref{sec:task}), (2) our game designs, (3) our deployment of the games and evaluation.
+
+
+%!TEX root=./proposal.tex
+
+\section{Related Work}
+\label{sec:relatedWork}
+\todo{related workd}
+%What existing understanding of the problem has been developed?
+%For a research proposal, this will briefly cover the most important related work in the space you are exploring.
+%For a design proposal, this will introduce existing solutions, why they fall short, and the potential opportunity.
+
+\subsection{Interactive Machine Learning}
+Interactive machine learning systems mainly try to either explain the corresponding models~\cite{ren2017squares, alsallakh2014visual}, or to accept feedback from users in order to improve or customize the model, or to compensate the lack of data.
+
+The manipulations fall into two categories: 
+\emph{labeling}, where users provide more training data to the model (e.g., ELUCIDEBUG~\cite{kulesza2015principles}, Visual Classifier Training~\cite{heimerl2012visual}), and \emph{feature engineering}, where users specify the included features or the feature weights based on their domain knowledge (e.g., INFUSE~\cite{krause2014infuse}, FeatureInsight~\cite{brooks2015featureinsight}).
+More examples can be found in surveys~\cite{Brown2016HumanMachineLearnerIT}. 
+Though Tam et al.~\cite{tam2017analysis} mentioned that when constructing a decision tree, compared to the machine, humans are more capable in looking ahead into the long-term effect of setting one node, understanding combined feature effects, and incorporating domain knowledge into their decision process.
+However, little work has been done in understanding if such domain knowledge provided reflect people's over-confidence in themselves or how they are (not) aligned with the automatically learned knowledge. 
+This is the main focus of our work.
+
+\subsection{Human Computation Games}
+
+Human computation games are designed to solve problems that are hard for computers, where a problem is encoded into a game and the solution is drawn from players movements in the game. Prior computation games are designed for labeling multimedia documents (e.g., image, video, music)~\cite{vonAhn:2004:LIC:985692.985733,ho2009kisskissban,vonAhn:2006:PGL:1124772.1124782,Seneviratne:2010:IFI:1743384.1743473,law2007tagatune}, collection recommendation~\cite{walsh2010curator}, collecting common sense~\cite{von2006verbosity} and more. 
+
+In order to obtain better solutions from the user, such games are designed with both collaborative and competitive elements. Collaborative elements are designed to cross validate solutions from different users, where multiple plays must make an agreement on the game solution to achieve the goal~\cite{vonAhn:2006:PGL:1124772.1124782}, and competitive elements~\cite{ho2009kisskissban} are demonstrated to be effective against cheats and vagueness in collaborations, where different groups have opposite goals and they are supposed to optimize their solution while fighting against others.
+
+Our proposed project divides players into two competitive groups and support in-group collaboration and between-group competition, which resembles the design of KissKissBan~\cite{ho2009kisskissban} (KKB). In contrast to KKB, we aim to engage large dynamic groups and have dynamic working sets which creates unique challenges in game design. Furthermore, our goal involves both labeling and feature selection instead of brainstorming (annotation). This implies finding minimal constraints as opposed to optimizing diversity. Selected features can be viewed as an explanation of the labeling result, which allows a built-in evaluation mechanism for both the challenge (sample) and the workers. 
+
+
+
 
 \section{Task Selection}
 \label{sec:task}
