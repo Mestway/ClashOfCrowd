@@ -74,6 +74,7 @@
 \usepackage{todonotes}
 \usepackage{paralist}
 \usepackage{lscape}
+\usepackage{url}
 
 % Paper metadata (use plain text, for PDF inclusion and later
 % re-using, if desired).  Use \emtpyauthor when submitting for review
@@ -245,7 +246,7 @@ We instead gamify the labeling and feature selection procedure, so to collect ``
 
 
 \subsection{Human Computation Games}
-
+\todo{Should emphasize more on the ones similar to ours}
 Human computation games are designed to solve problems that are hard for computers, where a problem is encoded into a game and the solution is drawn from players movements in the game. Prior computation games are designed for labeling multimedia documents (e.g., image, video, music)~\cite{vonAhn:2004:LIC:985692.985733,ho2009kisskissban,vonAhn:2006:PGL:1124772.1124782,Seneviratne:2010:IFI:1743384.1743473,law2007tagatune}, collection recommendation~\cite{walsh2010curator}, collecting common sense~\cite{von2006verbosity} and more. 
 
 In order to obtain better solutions from the user, such games are designed with both collaborative and competitive elements. Collaborative elements are designed to cross validate solutions from different users, where multiple plays must make an agreement on the game solution to achieve the goal~\cite{vonAhn:2006:PGL:1124772.1124782}, and competitive elements~\cite{ho2009kisskissban} are demonstrated to be effective against cheats and vagueness in collaborations, where different groups have opposite goals and they are supposed to optimize their solution while fighting against others.
@@ -253,40 +254,67 @@ In order to obtain better solutions from the user, such games are designed with 
 Our proposed project divides players into two competitive groups and support in-group collaboration and between-group competition, which resembles the design of KissKissBan~\cite{ho2009kisskissban} (KKB). In contrast to KKB, we aim to engage large dynamic groups and have dynamic working sets which creates unique challenges in game design. Furthermore, our goal involves both labeling and feature selection instead of brainstorming (annotation). This implies finding minimal constraints as opposed to optimizing diversity. Selected features can be viewed as an explanation of the labeling result, which allows a built-in evaluation mechanism for both the challenge (sample) and the workers. 
 
 
+\section{Game Design}
 
+\subsection{Design Rationale}
+\todo{Should be fine for now, but definitely need to change in a real paper XD}
+Our objective is to (1) collect document labels and the corresponding features, and (2) verify the features during the collection task. 
+While the incentives of the games are subtly different, all of them are designed based on the three criteria below.
 
-\section{Task Selection}
-\label{sec:task}
+\begin{compactitem}
+  \item \textbf{Data quality}: Players of the game should be table to collect less noisy or biased labels and features through the game, and preferably, collected features can be verified. The data collected from each game is summarized in Table.~\ref{table:dataCollect}
+  \item \textbf{Difficulty}: The game should be fairly intuitive to play and should not overwhelm the players. As this is difficult to directly quantify, we collect players' subjective response with a post-game questionnare. This is reported in Section~\ref{sec:analysis}
+  \item \textbf{Compatible incentive}: The incentives for different players, either in competitive or collaborative games, should be compatible such that neither sides have shortcuts and could play in a fair setting. This is mainly reflected in the bonus players receive.
+\end{compactitem}
+Based on the criteria, we empirically summarized summarized the pros and cons of different games in Table.~\ref{table:game}.
 
-The text classification task used in our paper is sentiment labeling for IMDB movie reviews. Labeling sentiment of movie reviews is a challenge task since (1) many reviews contain humorous or ironic elements that makes the movie sentiment orientation tricky to identify, and (2) movie reviews are self labeled: sentiment labeling of them are directly posted along with the review, which makes the training data and ground truth easy to obtain.
-
-\todo{Add some more description of the review?}
-
-\section{Game Design} 
-
-We have designed the following fives games to collect text sentiment labels and features from players; their interfaces are shown in Figure~\ref{fig:game-interface}.
-
+\subsection{Descriptions of Games}
+ \todo{Add the money}
+As shown in Fig.~\ref{fig:game-interface}, we have designed five games in this study, with \emph{Direct-Annotation} being the benchmark system. 
+The detailed descriptions are as follows.
+ 
 \begin{figure*}[t]
 \includegraphics[width=\linewidth]{gamepreview.pdf}
 \caption{Interface of DirectAnnotate, Bingo, HangmanAdd and HangmanSubtract}
 \label{fig:game-interface}
 \end{figure*}
 
-\begin{itemize}
-\item \emph{DirectAnnotate}. This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words).
-\item \emph{Bingo}. This is the game where two players coop on labeling document sentiment and extract informative words. The game requires labels collected from the team are the same, and the game is finished when two players reach an agreement on four informative words. 
-\item \emph{HangmanAdd}. Players in this game are assigned as annotator and guesser. The annotator label the document and provides a list of ranked informative words to assist the guesser to guess the document sentiment. Game result counts on how many words are used and whether the guesser result agree with the annotator's label.
-\item \emph{HangmanSubtract}. This is a competitive game where the two players are assigned as roles masker and guesser. The masker is asked to label the document and mask informative words that are important to his decision. The masker's goal is to hinder the guess to figure out the correct the document sentiment and the guesser is asked to guess document based on the masked document. (The guesser can unmask words with the reduction on the payment bonus and the masker earn more if labeled less but more effective.) 
-\item \emph{Censor}. \todo{add its content}
-\end{itemize}
+\paragraph{Direct-Annotation} 
+This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words).
+It simulates the general feature selection interface, and serves as a benchmark system for comparison.
+\paragraph{Bingo} 
+Bingo requires players to work together.
+Players will be randomly paired, and while both players will label the document and extract informative words, they can only complete one round of game when both players reach an agreement on four informative words.
+It can be seen as a collaborative version of \emph{Direct-Annotation}, with the only change being the agreement constraint. 
+Such constraint forces players to externalize the feature selection procedure. 
+By implicitly asking them to consider the other player, we would like to evaluate if social consensus leads to lower variance in the collected features.
 
-Our games are designed based the three criteria below, and our game design details are presented in Table~\ref{table:game}.
+\paragraph{Hangman-Add} 
+Players in this game are assigned as annotator and guesser. The annotator label the document and provides a list of ranked informative words to assist the guesser to guess the document sentiment. Game result counts on how many words are used and whether the guesser result agree with the annotator's label.
 
-\begin{itemize}\itemsep-1pt
-  \item \emph{Data quality}: Players of the game should be table to collect less noisy or biased labels and features through the game, and preferably, collected features can be verified.
-  \item \emph{Difficulty}: The game should be fairly intuitive to play and should not overwhelm the players. 
-  \item \emph{Compatible incentive}: The incentives for different players, either in competitive or collaborative games, should be compatible such that neither sides have shortcuts and could play in a fair setting.
-\end{itemize}
+This game, while still being collaborative, verifies how informative a set of selected features are by having an additional human verifier to judge the sentiment with only the features. 
+The difficulty of this game is dramatically impacted by the specific document. 
+Players can possibly guess a document's sentiment if it includes words with strong polarities, but this could become exceptionally difficult if the document contains multiple ironic phrases. 
+We view it as an alternative to collect the smallest set needed to determine the sentiment of one document, which could help us understand (1) the difficulty of a document to a human, (2) the evidences people use in specifically difficult documents, which are presumably also difficult for machines.
+
+
+\paragraph{Hangman-Subtract} 
+\todo{When this is really implemented I will need to explain the viz.}
+This is a competitive game where the two players are assigned as roles masker and guesser. The masker is asked to label the document and mask informative words that are important to his decision. The masker's goal is to hinder the guess to figure out the correct the document sentiment and the guesser is asked to guess document based on the masked document. 
+
+As the name indicates, it shares similar structures with \emph{Hangman-add}: 
+Both of them requires one person to annotate informative words, and another person guessing the sentiment. 
+The only difference is what the guessing side starts with: 
+In addition to the informative words that can be queried/unmasked, \emph{Hangman-Subtract} provides the document structure to guessers, and let them decide the sequence of ``unlocking'' the informative words. 
+We would like to see how ``unfeatured'' words, which are entirely ignored by machines, affect users behavior: Can users determine which informative words could be more informative than others based on their positions?
+Another bonus collection of this game is an inclusive set of informative words. 
+We could potentially evaluate the number of words on average needed to be removed to confuse people, as long as we take the subject-bias and document-bias into account.
+
+\paragraph{Censor}
+\emph{Censor} is the advanced version of \emph{Hangman-Subtract}. 
+While in \emph{Hangman-Subtract}, each masked word is automatically assigned a equal cost, the masker can manually allocate a fixed number of budget to all the words masked, and the guesser will need to pay the cost accordingly to unmask the word. 
+We would like to understand how players balance the budget and the information they gain. 
+For instance, if the seemingly most informative word has a high cost, will the guesser compensate by choosing the less informative ones? 
 
 \begin{table*}
 \footnotesize
@@ -365,11 +393,29 @@ Censor
 \label{table:game}
 \end{table*}
 
-\section{Implementation \& Deployment} Our games are deployed through....\todo{add details}
+\section{Experiment}
+\subsection{Implementation and Deployment}
+\todo{Sth more...}
+The games are implemented as web applications on top of TurkServer~\cite{turkserver}.
+Following its setting, we used Metoer as the client, and MongoDB as the database. 
+The visual feedback in \emph{Hangman-Subtract} and \emph{Censor} is implemented with d3js.
+
+Our games are deployed through Amazon Mechanical Turk.
+
+
+\subsection{Context} 
+While our games can be generally used for text classification tasks, we ask the workers to perform sentiment analysis on IMDB movie reviews~\cite{alsallakh2014visual} in our experiment. 
+We choose such a task because 
+(1) movie reviews require minimal domain-specific knowledge. Most people could read and understand it, which makes it an ideal source for being a crowdsourced task, and
+(2) the sentiment analysis for movie reviews is difficult, as many reviews contain humorous or ironic elements that makes the movie sentiment orientation tricky to identify. The broadly distributed difficulty leads to more interesting variations in the collected data.
+
+In our task, we manually selected thirty reviews, 17 positive ones and 13 negative ones.
+We manually coded the difficulty of each movie review based on our empirical understanding, and made sure the the difficulty is evenly distributed. 
 
 \section{Data Analysis} 
+\label{sec:analysis}
 
-\subsection{Collected Features} 
+\subsection{Log data} 
 The set of features that can be collected from different games are presented below. 
 
 \begin{center}
@@ -384,9 +430,15 @@ Features-rank &  & \textbullet & \textbullet & \textbullet  \\
 Features-refine &  &  &  & \textbullet  \\
 Features-verify &  & \textbullet & \textbullet & \textbullet  \\\hline
 \end{tabular}
+\label{table:dataCollect}
 \end{center}
 
 {\emph{Labels-full} refers to whether we can extract sentiment label from the game, \emph{labels-verify} refers to whether the game supports different players to verify their label result, \emph{feature-init} refers to whether the game obtains features provided by the gamer, \emph{feature-rank} refers to whether obtained features are ranked, \emph{feature-refine} refers to whether the player can refine initially collected feature, and \emph{feature-verify} refers to whether features are verified though multiple players.}
+
+\section{Post-Questionnare}
+Besides the log data, we have also asked the workers to fill in a post-task questionnare. We asked them to evaluate the engagement (``\emph{The game is engaging}'') and intuitiveness (``\emph{I could complete the game easily}'') of the game they played. 
+Additionally, as all the games except for the benchmark, \emph{Direction-Annotation}, are paired games, we also asked them to evaluate the social impact by scoring ``\emph{I care about my partner's performance greatly}''.
+\todo{Add result}
 
 \section{Conclusion}
 
