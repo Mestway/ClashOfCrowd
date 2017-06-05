@@ -171,8 +171,7 @@ Current classification systems have been taking advantage of human judgments to 
 \todo{For instance??}
 While researchers have argued that humans could contribute their domain knowledge to the models~\cite{stumpf2009interacting}, studies have frequently proved that human intersections are not as effective as we have hoped. 
 In fact, such intersections have caused the performances of multiple models to decrease~\cite{fiebrink2011human,stumpf2009interacting}.
-One of the potential barriers here is that we have little knowledge modelling how effective humans input is.
-
+One of the potential barriers here is that we have little knowledge modeling how effective humans input is.
 There are a few reasons that may cause ineffective human input: 
 
 Firstly, current feature selection procedures may not reflect the real reasoning procedures of feature engineers.
@@ -194,7 +193,7 @@ We choose to work in the domain of sentiment analysis, as it is one of the most 
 Specifically, we aim to explore two things: (1) how do human understandings for document sentiment map onto single words, and (2) if we could effective extract real ``human features'', or the understanding-word mappings mentioned, through certain workflows.
 
 To achieve this, we transfer the feature extraction workflow into four different games, namely the collaborative games \emph{Bingo} and \emph{Hangman-add}, and the competitive ones \emph{Hangman-subtract} and \emph{Censor}.
-All the games support simultaneous collection of document labels and features to ensure feature-label mapping.
+All the games support simultaneous collections of document labels and features to ensure feature-label mapping.
 By manipulating the users' possible inputs and their access to information in each game, we try to indirectly learn and verify latent features humans actually use. 
 Deploying the games to Amazon Mechanical Turk, we prove that our games could successfully help collect various sets of human features (e.g., the smallest set that could facilitate the decision making versus the most inclusive set that makes an instance classifiable for humans), and evaluate the how different incentives affect participants' feature extraction. 
 
@@ -230,7 +229,7 @@ Besides such end-user centered systems, some studies also try to enhance Machine
 
 While such work makes users engineer features more efficiently, the effectiveness is yet to be improved.
 Some work~\cite{fiebrink2011human,stumpf2009interacting, patel2008investigating} has proved that human intersections in general, including feature selection, sometimes tend to hurt the performance of a classifier. 
-The proposed problems is that users' manipulation could either over- or under- constraint the feature space.
+The proposed problem is that users' manipulation could either over- or under- constraint the feature space.
 The more essential problem here is the mismatch between the features provided by humans and the ones machines need to learn about. 
 As the features needed by the machines have been well studied with automated feature selection algorithms~\cite{empirical}, we focus on understanding human feature selection procedure here to fill the gap. 
 
@@ -258,10 +257,10 @@ While the incentives of the games are subtly different, all of them are designed
 
 \begin{compactitem}
   \item \textbf{Data quality}: Players of the game should be table to collect less noisy or biased labels and features through the game, and preferably, collected features can be verified. The data collected from each game is summarized in Table.~\ref{table:dataCollect}
-  \item \textbf{Difficulty}: The game should be fairly intuitive to play and should not overwhelm the players. As this is difficult to directly quantify, we collect players' subjective response with a post-game questionnare. This is reported in Section~\ref{sec:analysis}
+  \item \textbf{Difficulty}: The game should be fairly intuitive to play and should not overwhelm the players. As this is difficult to directly quantify, we collect players' subjective response with a post-game questionnaire. This is reported in Section~\ref{sec:analysis}
   \item \textbf{Compatible incentive}: The incentives for different players should be compatible. This is mainly reflected in the bonus players receive. While workers finishing the minimal required tasks can receive a HIT base payment, every document he or she works on bears an additional bonus. We designed carefully such that either in competitive or collaborative games, neither sides have shortcuts and could play in a fair setting. 
 \end{compactitem}
-Based on the criteria, we empirically summarized summarized the pros and cons of different games in Table.~\ref{table:game}.
+Based on the criteria, we empirically summarized the pros and cons of different games in Table.~\ref{table:game}.
 
 \subsection{Descriptions of Games}
 As shown in Fig.~\ref{fig:game-interface}, we have designed five games in this study, with \emph{Direct-Annotation} being the benchmark system. 
@@ -274,7 +273,7 @@ The detailed descriptions are as follows.
 \end{figure*}
 
 \paragraph{Direct-Annotation} 
-This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words) according to their own judgement. The player gets a bonus of \$0.05 for each document annotated. It simulates the general feature selection interface, and serves as a benchmark system for comparison. 
+This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words) according to their own judgment. The player gets a bonus of \$0.05 for each document annotated. It simulates the general feature selection interface, and serves as a benchmark system for comparison. 
 
 \paragraph{Bingo} 
 Bingo requires players to work together. Players will be randomly paired, and while both players will label the document and extract informative words, they can only complete one round of game when both players reach an agreement on four informative words.
@@ -298,12 +297,12 @@ Each can win up to \$0.1 for one document:\begin{compactitem}
 This game, while still being collaborative, verifies how informative a set of selected features are by having an additional human verifier to judge the sentiment with only the features. 
 The difficulty of this game is dramatically impacted by the specific document. 
 Players can possibly guess a document's sentiment if it includes words with strong polarities, but this could become exceptionally difficult if the document contains multiple ironic phrases. 
-We view it as an alternative to collect the smallest set needed to determine the sentiment of one document, which could help us understand (1) the difficulty of a document to a human, (2) the evidences people use in specifically difficult documents, which are presumably also difficult for machines.
+We view it as an alternative to collect the smallest set needed to determine the sentiment of one document, which could help us understand (1) the difficulty of a document to a human, (2) the evidence people use in specifically difficult documents, which are presumably also difficult for machines.
 
 
 \paragraph{Hangman-Subtract} 
 \todo{When this is implemented I will need to explain the viz.}
-This is a competitive game where the two players are assigned as roles masker and guesser. The masker is asked to label the document and mask informative words that are important to his decision. The masker's goal is to hinder the guess to figure out the correct the document sentiment and the guesser is asked to guess document based on the masked document. 
+This is a competitive game where the two players are assigned as roles masker and guesser. The masker is asked to label the document and to mask informative words that are important to his decision. The masker's goal is to hinder the guess to figure out the correct the document sentiment and the guesser is asked to guess document based on the masked document. 
 
 Such a competitive game requires a more sophisticated incentive matching in terms of the bonus allocation. Broadly speaking, we want the masker to win when he or she has masked a reasonable amount of words, and we want to prevent him/her from masking all or none of the words. 
 Similarly, we want the guesser to perform a reasonable unmasking before a precise guess, but not a random guess with no unmasking or a perfect labeling with everything unmasked.
@@ -323,13 +322,13 @@ The only difference is what the guessing side starts with:
 In addition to the informative words that can be queried/unmasked, \emph{Hangman-Subtract} provides the document structure to guessers, and let them decide the sequence of ``unlocking'' the informative words. 
 We would like to see how ``non-feature'' words, which are entirely ignored by machines, affect users behavior: Can users determine which informative words could be more informative than others based on their positions?
 
-Through this game we can also collect an inclusive set of informative words. We could potentially evaluate the number of words on average needed to be removed to confuse people, as long as we take the subject-bias and document-bias into account. This is informative in understanding the base amount of features required for correct document labelling.
+Through this game we can also collect an inclusive set of informative words. We could potentially evaluate the number of words on average needed to be removed to confuse people, as long as we take the subject-bias and document-bias into account. This is informative in understanding the base amount of features required for correct document labeling.
 
 \paragraph{Censor}
 \emph{Censor} is a developed version of \emph{Hangman-Subtract}. 
-While in \emph{Hangman-Subtract}, each masked word is automatically assigned a equal cost, in \emph{Censor}, the masker can manually allocate the fixed budget \$0.45 to all the words masked, and the guesser will need to pay the cost accordingly to unmask the word (the cost will be displayed to the guesser). 
+While in \emph{Hangman-Subtract}, each masked word is automatically assigned an equal cost, in \emph{Censor}, the masker can manually allocate the fixed budget \$0.45 to all the words masked, and the guesser will need to pay the cost accordingly to unmask the word (the cost will be displayed to the guesser). 
 
-In this experiment we would like to understand how players balance the budget and weight the importance of terms along with the information gain from knowing such weights. For instance, if the seemingly most informative word has a high cost, will the guesser compensate by choosing the less informative ones? 
+In this experiment, we would like to understand how players balance the budget and weight the importance of terms along with the information gain from knowing such weights. For instance, if the seemingly most informative word has a high cost, will the guesser compensate by choosing the less informative ones? 
 
 \begin{table*}
 \footnotesize
@@ -414,7 +413,7 @@ We chose to use TurkServer~\cite{turkserver} to implement our games. Each game i
 
 Due to the nature of the questions and game, each participant of a game type cannot work on the same document as a different role to prevent carry over knowledge. To simplify the process, we only allow a worker to participate in a game involving a particular document once.
 
-In \emph{Direct-Annotation}, workers independently work on a set of tasks and will proceed sequentially through experiments until the tasks are exhausted. This is managed through a \texttt{SingleGameAssginer}. In \emph{Bingo}, a synchronous pairing system \texttt{PairGameAssigner} is used. Workers will wait in the lobby until there is an available user (having a shared document they both have not yet labelled) and will then be promptly matched into an experiment instance. Workers completing the experiment will re-enter the lobby for a next round of matching. Workers may voluntarily exit after 5 rounds are completed and no partners are available or wait for a new partner instead. In \emph{Hangman-Add}, the annotator and guesser can be asynchronously matched through an \texttt{AsyncGameAssigner}. Workers are assigned a role for each round. Guessers will be replayed the list from previous annotations. Each experiment consists only of one user with their virtually matched partner.  The remaining two systems, \emph{Hangman-Subtract} and \emph{Censor} use a similar system with the difference being that the roles are assigned on task acceptance and an annotater stays within a single experiment for the duration of their playtime. Annotators can adjust their annotations according to system feedback stats (guesser accuracy etc.) on their annotations. Guessers will attempt to label the masked documents by using a current mask set from some annotator.
+In \emph{Direct-Annotation}, workers independently work on a set of tasks and will proceed sequentially through experiments until the tasks are exhausted. This is managed through a \texttt{SingleGameAssginer}. In \emph{Bingo}, a synchronous pairing system \texttt{PairGameAssigner} is used. Workers will wait in the lobby until there is an available user (having a shared document they both have not yet labeled) and will then be promptly matched into an experiment instance. Workers completing the experiment will re-enter the lobby for the next round of matching. Workers may voluntarily exit after 5 rounds are completed and no partners are available or wait for a new partner instead. In \emph{Hangman-Add}, the annotator and guesser can be asynchronously matched through an \texttt{AsyncGameAssigner}. Workers are assigned a role for each round. Guessers will be replayed the list from previous annotations. Each experiment consists only of one user with their virtually matched partner.  The remaining two systems, \emph{Hangman-Subtract} and \emph{Censor} use a similar system with the difference being that the roles are assigned on task acceptance and an annotator stays within a single experiment for the duration of their playtime. Annotators can adjust their annotations according to system feedback stats (guesser accuracy etc.) on their annotations. Guessers will attempt to label the masked documents by using a current mask set from some annotator.
 
 The visual feedback in \emph{Hangman-Subtract} and \emph{Censor} is implemented with d3js.
 
@@ -432,10 +431,10 @@ For each experiment, we deployed a TurkServer HIT with 20 distinct participants 
 While our games can be generally used for text classification tasks, we ask the workers to perform sentiment analysis on IMDB movie reviews~\cite{alsallakh2014visual} in our experiment. 
 We choose such a task because 
 (1) movie reviews require minimal domain-specific knowledge. Most people could read and understand it, which makes it an ideal source for being a crowdsourced task, and
-(2) the sentiment analysis for movie reviews is difficult, as many reviews contain humorous or ironic elements that makes the movie sentiment orientation tricky to identify. The broadly distributed difficulty leads to more interesting variations in the collected data.
+(2) the sentiment analysis for movie reviews is difficult, as many reviews contain humorous or ironic elements that make the movie sentiment orientation tricky to identify. The broadly distributed difficulty leads to more interesting variations in the collected data.
 
 In our task, we manually selected thirty reviews, 17 positive ones and 13 negative ones.
-We manually coded the difficulty of each movie review based on our empirical understanding, and made sure the the difficulty is evenly distributed. 
+We manually coded the difficulty of each movie review based on our empirical understanding, and made sure the difficulty is evenly distributed. 
 
 \section{Data Collection} 
 \label{sec:analysis}
@@ -460,7 +459,7 @@ Features-verify &  & \textbullet & \textbullet & \textbullet  \\\hline
 
 {\emph{Labels-full} refers to whether we can extract sentiment label from the game, \emph{labels-verify} refers to whether the game supports different players to verify their label result, \emph{feature-init} refers to whether the game obtains features provided by the gamer, \emph{feature-rank} refers to whether obtained features are ranked, \emph{feature-refine} refers to whether the player can refine initially collected feature, and \emph{feature-verify} refers to whether features are verified though multiple players.}
 
-\section{Exit Survey}
+\subsection{Exit Survey}
 Besides the log data, we have also asked the workers to fill in a post-task questionnare (exit survey). We asked them to evaluate the engagement (``\emph{The game is engaging}'') and intuitiveness (``\emph{I could complete the game easily}'') of the game they played. 
 Additionally, as all the games except for the benchmark, \emph{Direction-Annotation}, are paired games, we also asked them to evaluate the social impact by scoring ``\emph{I care about my partner's performance greatly}''.
 
