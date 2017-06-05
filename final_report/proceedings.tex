@@ -264,12 +264,11 @@ While the incentives of the games are subtly different, all of them are designed
 \begin{compactitem}
   \item \textbf{Data quality}: Players of the game should be table to collect less noisy or biased labels and features through the game, and preferably, collected features can be verified. The data collected from each game is summarized in Table.~\ref{table:dataCollect}
   \item \textbf{Difficulty}: The game should be fairly intuitive to play and should not overwhelm the players. As this is difficult to directly quantify, we collect players' subjective response with a post-game questionnare. This is reported in Section~\ref{sec:analysis}
-  \item \textbf{Compatible incentive}: The incentives for different players, either in competitive or collaborative games, should be compatible such that neither sides have shortcuts and could play in a fair setting. This is mainly reflected in the bonus players receive.
+  \item \textbf{Compatible incentive}: The incentives for different players should be compatible. This is mainly reflected in the bonus players receive. While workers finishing the minimal required tasks can receive a HIT base payment, every document he or she works on bears an additional bonus. We designed carefully such that either in competitive or collaborative games, neither sides have shortcuts and could play in a fair setting. 
 \end{compactitem}
 Based on the criteria, we empirically summarized summarized the pros and cons of different games in Table.~\ref{table:game}.
 
 \subsection{Descriptions of Games}
- \todo{Add the money}
 As shown in Fig.~\ref{fig:game-interface}, we have designed five games in this study, with \emph{Direct-Annotation} being the benchmark system. 
 The detailed descriptions are as follows.
  
@@ -280,17 +279,30 @@ The detailed descriptions are as follows.
 \end{figure*}
 
 \paragraph{Direct-Annotation} 
-This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words).
-It simulates the general feature selection interface, and serves as a benchmark system for comparison.
+This is the base game where the player directly labels document sentiment and selects words that influence decision making (informative words). The player gets a bonus of \$0.05 for each round.
+It simulates the general feature selection interface, and serves as a benchmark system for comparison. 
+
 \paragraph{Bingo} 
 Bingo requires players to work together.
 Players will be randomly paired, and while both players will label the document and extract informative words, they can only complete one round of game when both players reach an agreement on four informative words.
+One player can win up to \$0.06 for each document.
+He or she will win \$0.03 for each document finished, and another \$0.03 if the players successfully ``Bingo'' with the partner.
+
 It can be seen as a collaborative version of \emph{Direct-Annotation}, with the only change being the agreement constraint. 
 Such constraint forces players to externalize the feature selection procedure. 
 By implicitly asking them to consider the other player, we would like to evaluate if social consensus leads to lower variance in the collected features.
 
 \paragraph{Hangman-Add} 
 Players in this game are assigned as annotator and guesser. The annotator label the document and provides a list of ranked informative words to assist the guesser to guess the document sentiment. Game result counts on how many words are used and whether the guesser result agree with the annotator's label.
+
+Both the annotator and the guesser receive the same amount of payment.
+Each can win up to \$0.1 for one document. 
+The \$0.1 is split into three categories: 
+\begin{compactitem}
+	\item \textbf{Thanks for participation: } \$0.01 for each document finished.
+	\item \textbf{Agreement reward: } \$0.02 if the two players agree on the review sentiment.
+	\item \textbf{You needed less clues: } up to \$0.07 if the guesser asks for less words. The first word asked is free, and every additional word costs \$0.01. In other words, if $n$ words are asked, the bonus will be $0.07-0.01(n-1)$.
+\end{compactitem}
 
 This game, while still being collaborative, verifies how informative a set of selected features are by having an additional human verifier to judge the sentiment with only the features. 
 The difficulty of this game is dramatically impacted by the specific document. 
@@ -302,6 +314,18 @@ We view it as an alternative to collect the smallest set needed to determine the
 \todo{When this is really implemented I will need to explain the viz.}
 This is a competitive game where the two players are assigned as roles masker and guesser. The masker is asked to label the document and mask informative words that are important to his decision. The masker's goal is to hinder the guess to figure out the correct the document sentiment and the guesser is asked to guess document based on the masked document. 
 
+Such a competitive game requires a more sophisticated incentive matching in terms of the bonus allocation. Broadly speaking, we want the masker to win when he or she has masked a reasonable amount of words, and we want to prevent him/her from masking all or none of the words. 
+Similarly, we want the guesser to perform a reasonable unmasking before a precise guess, but not a random guess with no unmasking or a perfect labeling with everything unmasked.
+To achieve this, we develop the following strategy: 
+The masker and the guesser share up to \$0.45 bonus per document (Suppose it has $m$ tokens involved).
+Such \$0.45 is equally allocated to every word masked ($N$ in total).
+Assume the guesser has unmasked $n$ of them when he/she guesses ($n \leq N$):
+
+\begin{compactitem}
+	\item \textbf{Guesser win: } If the guesser labels the document correctly, the guesser gets all the bonus associated with the still masked words, or the ones that he/she has not use ($\$0.45\cdot (N-n) / N$). The masker gets all the unmasked ones ($\$0.45\cdot n / N$). 
+	\item \textbf{Guesser loss: } If the guesser labels the document incorrectly, the guesser gets no bonus, and the annotator gets the bonus for all the words not getting masked currently proportional to the number of total token $m$ ($\$0.45\cdot (m-N+n) / m$).
+\end{compactitem}
+
 As the name indicates, it shares similar structures with \emph{Hangman-add}: 
 Both of them requires one person to annotate informative words, and another person guessing the sentiment. 
 The only difference is what the guessing side starts with: 
@@ -312,7 +336,7 @@ We could potentially evaluate the number of words on average needed to be remove
 
 \paragraph{Censor}
 \emph{Censor} is the advanced version of \emph{Hangman-Subtract}. 
-While in \emph{Hangman-Subtract}, each masked word is automatically assigned a equal cost, the masker can manually allocate a fixed number of budget to all the words masked, and the guesser will need to pay the cost accordingly to unmask the word. 
+While in \emph{Hangman-Subtract}, each masked word is automatically assigned a equal cost, the masker can manually allocate the fixed budget \$0.45 to all the words masked, and the guesser will need to pay the cost accordingly to unmask the word. 
 We would like to understand how players balance the budget and the information they gain. 
 For instance, if the seemingly most informative word has a high cost, will the guesser compensate by choosing the less informative ones? 
 
