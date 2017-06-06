@@ -485,7 +485,7 @@ Due to time limit, we have only deployed game \emph{Bingo} and baseline \emph{Di
 
 \subsection{Label Accuracy}
 
-Figure~\ref{fig:direct-label} shows labels collected from the baseline game \emph{DirectAnnotation}. In general, a majority of players labeled correctly for most documents. However, there exists documents that receives wrong labels from nearly half of the players, e.g., document 1, 2, and 6. We reviewed these special cases and find out the following facts: (1) these documents are typically negative contain ironic elements
+Figure~\ref{fig:direct-label} shows labels collected from the baseline game \emph{DirectAnnotation} and \emph{Bingo}. From the figure we noticed that labels corrected through direct annotation have a higher chance of being wrong. For example, document 1, 2, and 6 have nearly half labels wrong in game \emph{DirectAnnotation} while most players made it correct in \emph{Bingo}. We reviewed these cases and found out that these documents are negative reviews containing ironic elements. In these cases, \emph{DirectAnnotation} players receives no feedback from other players and tend to misunderstood the document; in contrast, although players have same document access as before in \emph{Bingo}, the pair-wise agreement module lets them review and carefully think about their decision more carefully, so that they tend to make less mistakes for such tricky documents.
 
 \subsection{Features}
 \todo{Write}
