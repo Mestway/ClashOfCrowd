@@ -461,9 +461,12 @@ Besides the log data, we have also asked the workers to fill in a post-task ques
 Additionally, as all the games except for the benchmark, \emph{Direction-Annotation}, are paired games, we also asked them to evaluate the social impact by scoring ``\emph{I care about my partner's performance greatly}''.
 
 \section{Results}
+
+Due to time limit, we have only deployed game \emph{Bingo} and baseline \emph{DirectAnnotation} so far. As a result, our evaluation focuses on analyzing players' performance in \emph{Bingo} instead of performing inter-game feature comparison. We leave rest proposed experiments as part of future work.
+
 \subsection{Label Accuracy}
-Since some games constrain human understanding against a limited feature system, we expect to see that
-\todo{Finish}
+
+Figure~\ref{fig:direct-label} shows labels collected from the baseline game \emph{DirectAnnotation}. In general, a majority of players labeled correctly for most documents. However, there exists documents that receives wrong labels from nearly half of the players, e.g., document 1, 2, and 6. We reviewed these special cases and find out the following facts: (1) these documents are typically negative contain ironic elements \todo{chenglong working on this}
 
 \begin{figure*}[t]
 \includegraphics[width=\linewidth]{figures/direct-label.pdf}
