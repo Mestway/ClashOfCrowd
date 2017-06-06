@@ -430,8 +430,8 @@ Our games are deployed through Amazon Mechanical Turk with the following qualifi
 For each experiment, we deployed a TurkServer HIT with 20 distinct participants while disallowing  re-entry of past participants. Bonuses were paid out at the end of the experiment. 
 
 \begin{figure*}[t]
-\includegraphics[width=\linewidth]{figures/direct-label.pdf}
-\caption{Labeling collected with game \emph{DirectAnnotation}.}
+\includegraphics[width=\linewidth]{figures/label.pdf}
+\caption{Labeling collected with game \emph{DirectAnnotation} and \emph{Bingo}.}
 \label{fig:direct-label}
 \end{figure*}
 
@@ -487,8 +487,23 @@ Due to time limit, we have only deployed game \emph{Bingo} and baseline \emph{Di
 
 Figure~\ref{fig:direct-label} shows labels collected from the baseline game \emph{DirectAnnotation} and \emph{Bingo}. From the figure we noticed that labels corrected through direct annotation have a higher chance of being wrong. For example, document 1, 2, and 6 have nearly half labels wrong in game \emph{DirectAnnotation} while most players made it correct in \emph{Bingo}. We reviewed these cases and found out that these documents are negative reviews containing ironic elements. In these cases, \emph{DirectAnnotation} players receives no feedback from other players and tend to misunderstood the document; in contrast, although players have same document access as before in \emph{Bingo}, the pair-wise agreement module lets them review and carefully think about their decision more carefully, so that they tend to make less mistakes for such tricky documents.
 
+
+\begin{figure}[t]
+\includegraphics[width=\linewidth]{figures/feature-doc-1}
+\caption{Features collected for document 1 with game \emph{DirectAnnotation} and \emph{Bingo}.}
+\label{fig:interview}
+\end{figure}
+
+\begin{figure}[t]
+\includegraphics[width=\linewidth]{figures/feature-doc-2}
+\caption{Features collected for document 2 with game \emph{DirectAnnotation} and \emph{Bingo}.}
+\label{fig:interview}
+\end{figure}
+
 \subsection{Features}
 \todo{Write}
+
+
 
 \subsection{Engagement}
 \todo{Write}
