@@ -153,7 +153,7 @@
 \maketitle
 
 \begin{abstract}
-Having human to assist computer in feature extraction and selection is becoming popular in the field of interactive Machine Learning (iML). However, few prior work attempted to understand how humans interpret the features being used. In this work, we attempt to indirectly learn and verify latent features humans actually use by gamifying the simultaneous labeling and feature selection procedure to form a better understanding of human feature extraction process.
+Including human in the loop of feature extraction and selection is becoming popular in the field of interactive Machine Learning (iML). However, little prior work attempted to understand how humans interpret the features being used. In this work, we attempt to indirectly learn and verify latent features humans actually use by gamifying the simultaneous labeling and feature selection procedure to form a better understanding of human feature extraction process.
 By designing and comparing four crowdsourcing games against a baseline system and between each other on text sentiment labeling task, we mapped humans' judgment making model onto constrained feature sets to learn if and how human judgments may effectively inform machine learning models.
 \end{abstract}
 
@@ -183,13 +183,9 @@ Second, we have not yet understood whether computers and humans proceed a classi
 Most of the state-of-art iML systems use linear models like Naive Bayes~\cite{kulesza2015principles, kulesza2011oriented, amershi2012regroup} as their underlying algorithm because of its interpretability.
 Such algorithms are well known for using the bag-of-words models such as frequencies of n-grams for text classification. On the other hand, it is unclear whether humans make their judgments with the same model, and directly combining humans' decision making model into the original automated training process is questionably beneficial. If it is not the case, humans' chosen features could be dramatically different from, and potentially not transferable to existing machine learning models.
 
-Understanding the human procedure is crucial for building effective iML systems.
-By comparing and articulating the differences between the classification process of humans and computers, we seek to model the divide between ``what humans can provide'' and ``what computers can intake''.
-Instead of merely providing features that us humans identify from an arbitrary personal measure and iterating through the tedious ``trial-and-error'' procedure, such understanding could guide humans to pinpointedly contribute their domain knowledge in a way that the machines could most efficiently acquire. 
+Thus, understanding humans' feature extraction model (or humans' decision making procedure) is crucial for building effective iML systems. Instead of simply providing features that us humans identify from an arbitrary personal measure and iterating through the tedious ``trial-and-error'' procedure, our work seeks to understand the distinction between ``what humans can provide'' and ``what computers can intake'' by comparing and articulating the differences between the classification process of humans and computers. Such understanding could guide humans to effectively contribute their domain knowledge in a way that the machines could use. In this paper, we ground our experiment on sentiment analysis tasks, which is among most important and fundamental classification tasks and is intuitive enough so that human understandings will not obstruct our learning.
 
-Our project, therefore, seeks to understand the human feature engineering procedure.
-We choose to work in the domain of sentiment analysis, as it is one of the most important and fundamental classification task, and that it is intuitive enough so that human understandings will not obstruct our learning.
-Specifically, we aim to explore two things: (1) how do human understandings for document sentiment map onto single words, and (2) if we could effective extract real ``human features'', or the understanding-word mappings mentioned, through certain workflows.
+Concretely, we aim to explore two things in our experiment: (1) how do human understandings for document sentiment map onto single words, and (2) if we could effective extract real ``human features'', or the understanding-word mappings mentioned, through certain workflows.
 
 To achieve this, we transfer the feature extraction workflow into four different games, namely the collaborative games \emph{Bingo} and \emph{Hangman-add}, and the competitive ones \emph{Hangman-subtract} and \emph{Censor}.
 All the games support simultaneous collections of document labels and features to ensure feature-label mapping.
