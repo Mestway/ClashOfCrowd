@@ -153,8 +153,9 @@
 \maketitle
 
 \begin{abstract}
-Including human in the loop of feature extraction and selection is becoming popular in the field of interactive Machine Learning (iML). However, little prior work attempted to understand how humans interpret the features being used. In this work, we attempt to indirectly learn and verify latent features humans actually use by gamifying the simultaneous labeling and feature selection procedure to form a better understanding of human feature extraction process.
-By designing and comparing four crowdsourcing games against a baseline system and between each other on text sentiment labeling task, we mapped humans' judgment making model onto constrained feature sets to learn if and how human judgments may effectively inform machine learning models.
+Human assisted feature extraction and selection is becoming popular in the field of interactive Machine Learning (iML). Prior work commonly builds on assumptions that human involvement contributes positively without attempting to understand how humans interpret the features being used. In this work, we attempt to form a better understanding of human feature extraction process by indirectly learning and verifying latent features humans are using through gamifying the simultaneous labeling and feature selection procedure.
+
+We designed and compared four interactive games against a baseline implementation of a common feature optimization system and between each other on text sentiment labeling task. Through our experiments, we attempt to map human judgment onto a model using a constrained feature set (bag-of-words model) to learn if and how human judgments may effectively inform machine learning models.
 \end{abstract}
 
 %\category{H.5.m.}{Information Interfaces and Presentation
@@ -166,38 +167,42 @@ By designing and comparing four crowdsourcing games against a baseline system an
 
 \section{Introduction}
 
-Interactive feature selection has become one of the mainstreams in interactive Machine Learning (iML).
+Interactive feature selection has become mainstream in interactive Machine Learning (iML).
 Current classification systems have been taking advantage of human judgments to select predictive features to build effective machine learning models~\cite{brooks2015featureinsight, cheng2015flock}. 
-For instance, FeatureInsight~\cite{brooks2015featureinsight} is an interactive feature selecting system that allows humans to select feature words to assist text classification tasks.
-While researchers initially claimed that humans could contribute their domain knowledge to the models~\cite{stumpf2009interacting}, new studies frequently proved that human intersections are not as effective as we have hoped. Even worse, some of such interactive approach even decreased performances of multiple models~\cite{fiebrink2011human,stumpf2009interacting}.
-One potential barriers for designers to take good use of such interactive approach is that we have little knowledge modeling how effective humans input is.
+For instance, FeatureInsight~\cite{brooks2015featureinsight} presents an interactive feature selection system that allows humans to select word features that will assist text classification tasks.
 
-There are a few reasons that may result in ineffective human input: 
+While general belief in the past was that humans could contribute their domain knowledge to the models~\cite{stumpf2009interacting}, new studies have shown that human intersections are not as effective as we have hoped. Even worse, some of these interactive approaches even see decreased performance on multiple models~\cite{fiebrink2011human,stumpf2009interacting}.
+A potential barrier for designers of iML systems is how to make good use of interactive approaches with the limited knowledge on modelling humans input effectiveness.
 
-Firstly, current feature selection procedures may not reflect the real reasoning procedures of feature engineers.
-Prior work (e.g.,~\cite{trivedi2015interactive}) seeks to understand features that human use by mapping users' mental model into concrete words in the document. The approach used to collect such feature words (i.e., ``human features''), take sentiment analysis for example, is to directly ask users to (1) label a document and (2) then select words associated with this decision it. 
+There are a few reasons that direct application of human judgement may result in suboptimal outcomes: 
+
+Firstly, current feature selection procedures may not reflect underlying reasoning structures feature engineers are actually using.
+Prior work (e.g.,~\cite{trivedi2015interactive}) has been done to understand features that human use by mapping users' mental model into concrete words in the document. The approach used to collect such features (i.e., ``human features''), take sentiment analysis for example, is to directly ask users to (1) label a document and (2) then select words associated with this decision it. 
+
 While such techniques are straightforward, it is unclear whether features collected in this way suffer from the ``hindsight bias'' effect of human labelers. 
-In fact, Gazzaniga et al.~\cite{gazzaniga2013integrated} proved that people are generally poor at introspecting on the signals they use to make decisions. In other words, post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts (or ones they used in the decision making process). If such effect exists, labels and features collected from existing approaches are not guaranteed to be naturally paired. Additionally, diverging understanding of the task may also result in different features being selected among human workers.
+In fact, Gazzaniga et al.~\cite{gazzaniga2013integrated} has shown that people are generally poor at introspecting on the signals they use to make decisions. In other words, post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts (or ones they used in the decision making process). If such an effect exists, labels and features collected from existing approaches are not guaranteed to be naturally paired. Additionally, diverging understanding of the task may also result in different features being selected among human workers.
 
-Second, we have not yet understood whether computers and humans proceed a classification task in the same way. 
-Most of the state-of-art iML systems use linear models like Naive Bayes~\cite{kulesza2015principles, kulesza2011oriented, amershi2012regroup} as their underlying algorithm because of its interpretability.
-Such algorithms are well known for using the bag-of-words models such as frequencies of n-grams for text classification. On the other hand, it is unclear whether humans make their judgments with the same model, and directly combining humans' decision making model into the original automated training process is questionably beneficial. If it is not the case, humans' chosen features could be dramatically different from, and potentially not transferable to existing machine learning models.
+Second, we have not yet understood whether computers and humans proceed a classification task in the same way. Most state-of-art iML systems use linear models like Naive Bayes~\cite{kulesza2015principles, kulesza2011oriented, amershi2012regroup} as their underlying classification model because of its interpretability.
+Such algorithms are well known for making use of the bag-of-words models such as frequencies of n-grams for text classification. On the other hand, it is unclear whether humans make their judgments with a similar model, and directly combining humans' decision making model (which produces features) with the model using in automated training is questionably beneficial. With model discrepancies in mind, human-chosen features could be different from, and potentially not transferable to existing machine learning models.
 
-Thus, understanding humans' feature extraction model (or humans' decision making procedure) is crucial for building effective iML systems. Instead of simply providing features that us humans identify from an arbitrary personal measure and iterating through the tedious ``trial-and-error'' procedure, our work seeks to understand the distinction between ``what humans can provide'' and ``what computers can intake'' by comparing and articulating the differences between the classification process of humans and computers. Such understanding could guide humans to effectively contribute their domain knowledge in a way that the machines could use. In this paper, we ground our experiment on sentiment analysis tasks, which is among most important and fundamental classification tasks and is intuitive enough so that human understandings will not obstruct our learning.
+As a result of the observations above, understanding human understanding in feature selection (or human decision making) is crucial for building effective iML systems. Instead of simply providing features that humans identify from an arbitrary personal measures and iterating through a tedious ``trial-and-error'' procedure, our work seeks to understand the distinction between ``what humans can provide'' and ``what computers can intake'' by comparing and articulating the differences between the classification process of humans and computers. Such understanding could guide humans to effectively contribute their domain knowledge in a way that the machines can use. In this paper, we ground our experiment on sentiment analysis tasks, which is among most important and fundamental classification tasks and is intuitive enough so that human understanding will not obstruct our learning.
 
-Concretely, we aim to explore two things in our experiment: (1) how do human understandings for document sentiment map onto single words, and (2) if we could effective extract real ``human features'', or the understanding-word mappings mentioned, through certain workflows.
+Concretely, we aim to explore two things in our experiment: (1) how do human understanding for document sentiment map onto unigram bag-of-words features, and (2) whether we can effectively extract real ``human features'', or the understanding-word mappings as mentioned, through certain workflow designs.
 
-To achieve this, we transfer the feature extraction workflow into four different games, namely the collaborative games \emph{Bingo} and \emph{Hangman-add}, and the competitive ones \emph{Hangman-subtract} and \emph{Censor}.
+To achieve this, we transform the feature extraction workflow into four different games, namely the collaborative games \emph{Bingo} and \emph{Hangman-add}, and the competitive ones \emph{Hangman-subtract} and \emph{Censor}.
 All the games support simultaneous collections of document labels and features to ensure feature-label mapping.
 By manipulating the users' possible inputs and their access to information in each game, we try to indirectly learn and verify latent features humans actually use. 
-Deploying the games to Amazon Mechanical Turk, we prove that our games could successfully help collect various sets of human features (e.g., the smallest set that could facilitate the decision making versus the most inclusive set that makes an instance classifiable for humans), and evaluate the how different incentives affect participants' feature extraction. 
 
-We conclude through the analysis that \todo{Summarize the analysis result when done.}
+Deploying the games to Amazon Mechanical Turk (AMT), we examine how our games may support effective elicitation of various sets of human features (e.g., minimal set for facilitating decision making, inclusive superset of features will allow human classifiability). 
+% and evaluate the how different incentives affect participants' feature extraction. 
+% --- We don't do this (See Proposal!)
+
+Through our experiments and analysis we come to the conclusion \todo{Summarize the analysis result when done.}
 
 Our contributions are as follows:
 \begin{compactitem}
-	\item We proposed a new game-based approach for both \emph{collecting} and \emph{verifying} features used by human in sentiment labeling tasks.
-  \item We implemented and deployed our games to collect users game statistics, form which we learned a few principles of human features that can be used to aid iML system design.
+	\item Proposal of a new game-based approach for both \emph{collecting} and \emph{verifying} features used by human in sentiment labeling tasks.
+  \item Implementation and deployment of games to collect users game statistics, from which we learned a few principles of human features that can be used to aid iML system design.
   \item \todo{more?} 
 \end{compactitem}
 
