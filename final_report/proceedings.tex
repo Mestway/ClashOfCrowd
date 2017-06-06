@@ -153,8 +153,8 @@
 \maketitle
 
 \begin{abstract}
-Feature extraction and selection have become popular in the field of interactive Machine Learning (iML), however, few systems attempt at understanding how humans interpret the features being used. In this work, we attempt to indirectly learn and verify latent features humans actually use by gamifying the simultaneous labeling and feature selection procedure.
-By comparing four crowdsourcing games against a benchmark system and between each other, we explore models of human judgements mapped to constrained feature sets to see if and how human judgments may effectively inform machine learning models.
+Having human to assist computer in feature extraction and selection is becoming popular in the field of interactive Machine Learning (iML). However, few prior work attempted to understand how humans interpret the features being used. In this work, we attempt to indirectly learn and verify latent features humans actually use by gamifying the simultaneous labeling and feature selection procedure to form a better understanding of human feature extraction process.
+By designing and comparing four crowdsourcing games against a baseline system and between each other on text sentiment labeling task, we mapped humans' judgment making model onto constrained feature sets to learn if and how human judgments may effectively inform machine learning models.
 \end{abstract}
 
 %\category{H.5.m.}{Information Interfaces and Presentation
@@ -168,21 +168,20 @@ By comparing four crowdsourcing games against a benchmark system and between eac
 
 Interactive feature selection has become one of the mainstreams in interactive Machine Learning (iML).
 Current classification systems have been taking advantage of human judgments to select predictive features to build effective machine learning models~\cite{brooks2015featureinsight, cheng2015flock}. 
-\todo{For instance??}
-While researchers have argued that humans could contribute their domain knowledge to the models~\cite{stumpf2009interacting}, studies have frequently proved that human intersections are not as effective as we have hoped. 
-In fact, such intersections have caused the performances of multiple models to decrease~\cite{fiebrink2011human,stumpf2009interacting}.
-One of the potential barriers here is that we have little knowledge modeling how effective humans input is.
-There are a few reasons that may cause ineffective human input: 
+For instance, FeatureInsight~\cite{brooks2015featureinsight} is an interactive feature selecting system that allows humans to select feature words to assist text classification tasks.
+While researchers initially claimed that humans could contribute their domain knowledge to the models~\cite{stumpf2009interacting}, new studies frequently proved that human intersections are not as effective as we have hoped. Even worse, some of such interactive approach even decreased performances of multiple models~\cite{fiebrink2011human,stumpf2009interacting}.
+One potential barriers for designers to take good use of such interactive approach is that we have little knowledge modeling how effective humans input is.
+
+There are a few reasons that may result in ineffective human input: 
 
 Firstly, current feature selection procedures may not reflect the real reasoning procedures of feature engineers.
 Prior work (e.g.,~\cite{trivedi2015interactive}) seeks to understand features that human use by mapping users' mental model into concrete words in the document. The approach used to collect such feature words (i.e., ``human features''), take sentiment analysis for example, is to directly ask users to (1) label a document and (2) then select words associated with this decision it. 
 While such techniques are straightforward, it is unclear whether features collected in this way suffer from the ``hindsight bias'' effect of human labelers. 
- ~\cite{gazzaniga2013integrated} has proved that people are generally poor at introspecting on the signals they use to make decisions. In other words, post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts. If such effect exists, collected labels and features are not guaranteed to be naturally paired. Additionally, diverging understanding of the task may also result in different features being selected among human workers.
+In fact, Gazzaniga et al.~\cite{gazzaniga2013integrated} proved that people are generally poor at introspecting on the signals they use to make decisions. In other words, post-hoc word selection could lead users to ``make up'' reasons (i.e., words) that they believe best explain their completed labeling decision, rather than the ones that reflect their instincts (or ones they used in the decision making process). If such effect exists, labels and features collected from existing approaches are not guaranteed to be naturally paired. Additionally, diverging understanding of the task may also result in different features being selected among human workers.
 
-
-Another reason may be that, we have yet to understand if computers and humans proceed a classification task in the same way. 
+Second, we have not yet understood whether computers and humans proceed a classification task in the same way. 
 Most of the state-of-art iML systems use linear models like Naive Bayes~\cite{kulesza2015principles, kulesza2011oriented, amershi2012regroup} as their underlying algorithm because of its interpretability.
-Such algorithms are well known for using the bag-of-words models such as frequencies of n-grams. However, we suspect that humans make their judgments with different models, and thus attempting to fit their decision making procedure into the original automated training process is questionably beneficial. Human chosen features could be dramatically different from, and potentially not transferrable to machine learning models.
+Such algorithms are well known for using the bag-of-words models such as frequencies of n-grams for text classification. On the other hand, it is unclear whether humans make their judgments with the same model, and directly combining humans' decision making model into the original automated training process is questionably beneficial. If it is not the case, humans' chosen features could be dramatically different from, and potentially not transferable to existing machine learning models.
 
 Understanding the human procedure is crucial for building effective iML systems.
 By comparing and articulating the differences between the classification process of humans and computers, we seek to model the divide between ``what humans can provide'' and ``what computers can intake''.
