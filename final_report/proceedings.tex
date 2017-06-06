@@ -332,7 +332,7 @@ While in \emph{Hangman-Subtract}, each masked word is automatically assigned an 
 
 In this experiment, we would like to understand how players balance the budget and weight the importance of terms along with the information gain from knowing such weights. For instance, if the seemingly most informative word has a high cost, will the guesser compensate by choosing the less informative ones? 
 
-\begin{table*}
+\begin{table*}[h]
 \footnotesize
 \centering
 \begin{tabular}{|p{0.08\paperwidth} |p{0.07\paperwidth} |p{0.13\paperwidth} |p{0.3\paperwidth} |p{0.18\paperwidth}|}
@@ -429,6 +429,19 @@ Our games are deployed through Amazon Mechanical Turk with the following qualifi
 
 For each experiment, we deployed a TurkServer HIT with 20 distinct participants while disallowing  re-entry of past participants. Bonuses were paid out at the end of the experiment. 
 
+\begin{figure*}[t]
+\includegraphics[width=\linewidth]{figures/direct-label.pdf}
+\caption{Labeling collected with game \emph{DirectAnnotation}.}
+\label{fig:direct-label}
+\end{figure*}
+
+
+\begin{figure*}[t]
+\includegraphics[width=\linewidth]{figures/interview.pdf}
+\caption{Labeling collected with game \emph{DirectAnnotation}.}
+\label{fig:interview}
+\end{figure*}
+
 \subsection{Context} 
 While our games can be generally used for text classification tasks, we ask the workers to perform sentiment analysis on IMDB movie reviews~\cite{alsallakh2014visual} in our experiment. 
 We choose such a task because 
@@ -437,6 +450,7 @@ We choose such a task because
 
 In our task, we manually selected thirty reviews, 17 positive ones and 13 negative ones.
 We manually coded the difficulty of each movie review based on our empirical understanding, and made sure the difficulty is evenly distributed. 
+
 
 \section{Data Collection} 
 \label{sec:analysis}
@@ -471,26 +485,13 @@ Due to time limit, we have only deployed game \emph{Bingo} and baseline \emph{Di
 
 \subsection{Label Accuracy}
 
-Figure~\ref{fig:direct-label} shows labels collected from the baseline game \emph{DirectAnnotation}. In general, a majority of players labeled correctly for most documents. However, there exists documents that receives wrong labels from nearly half of the players, e.g., document 1, 2, and 6. We reviewed these special cases and find out the following facts: (1) these documents are typically negative contain ironic elements \todo{chenglong working on this}
-
-\begin{figure*}[t]
-\includegraphics[width=\linewidth]{figures/direct-label.pdf}
-\caption{Labeling collected with game \emph{DirectAnnotation}.}
-\label{fig:direct-label}
-\end{figure*}
+Figure~\ref{fig:direct-label} shows labels collected from the baseline game \emph{DirectAnnotation}. In general, a majority of players labeled correctly for most documents. However, there exists documents that receives wrong labels from nearly half of the players, e.g., document 1, 2, and 6. We reviewed these special cases and find out the following facts: (1) these documents are typically negative contain ironic elements
 
 \subsection{Features}
 \todo{Write}
 
 \subsection{Engagement}
 \todo{Write}
-
-
-\begin{figure*}[t]
-\includegraphics[width=\linewidth]{figures/interview.pdf}
-\caption{Labeling collected with game \emph{DirectAnnotation}.}
-\label{fig:interview}
-\end{figure*}
 
 \section{Conclusion}
 
