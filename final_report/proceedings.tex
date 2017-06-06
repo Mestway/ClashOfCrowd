@@ -483,7 +483,7 @@ Additionally, as all the games except for the benchmark, \emph{Direction-Annotat
 
 \section{Results}
 
-Due to time limit, we have only deployed game \emph{Bingo} and baseline \emph{DirectAnnotation} so far. As a result, our evaluation focuses on analyzing players' performance in \emph{Bingo} instead of performing inter-game feature comparison. We leave rest proposed experiments as part of future work.
+Due to time limit, we deployed only the game \emph{Bingo} and baseline \emph{DirectAnnotation} so far. As a result, our evaluation focuses on analyzing players' performance in \emph{Bingo} against \emph{DirectAnnotation}. We leave rest proposed experiments as part of future work.
 
 \subsection{Label Accuracy}
 
@@ -500,12 +500,15 @@ Figure~\ref{fig:direct-label} shows labels collected from the baseline game \emp
 
 \subsection{Features}
 
-We present features collected for the two aforementioned challenges cases to highlight differences between \emph{DirectAnnotation} and \emph{Bingo} in their ability of soliciting meaning features (Figure~\ref{fig:feature}). From the case for document 1, we noticed that features
+We present features collected for the two aforementioned challenges cases to highlight differences between \emph{DirectAnnotation} and \emph{Bingo} in their ability of soliciting meaning features (Figure~\ref{fig:feature}). From those cases for document, we observe an interesting fact: while labels collected from both games varies a lot, their core feature set have a significant overlap. The fact indicates that only changing the game mode without changing users information access does not bias users' feature extraction process. On the other side, we noticed that forcing players to reach agreements lets them refine the set of features they choose, so that more important features are selected more often comparing to less impacting words in the text.
 
 \subsection{Engagement}
  Our survey about engagement and intuitiveness of the games is shown in Figure~\ref{fig:interview}. In general, players find game \emph{Bingo} more engaging (mostly likely resulted from its coop mode). However, we also notice that people consider \emph{Bingo} less intuitive to work around, indicating that a better training phase may be necessary for more complex coop games.
 
 \section{Conclusion}
+\todo{Expand on this when we complete all experiments}
+The current experiments show promising results for using game systems to elicit features from human understanding. We also see that bingo offers some improvement over the reference \emph{Direct-Annotation} system. More data needs to be collected before we can come to the final conclusion about the games and behaviors being studied.
+
 
 \section{Discussion}
 In our study, we present the problem of mapping human understanding of a machine learning problem onto a constrained model (bag-of-words) using crowdsourcing games. We designed several systems to evaulate how we can effectively learn human understanding. Our results show that such methods of learning latent human features is promising and that further examination of such systems could lead to better design of iML systems.
