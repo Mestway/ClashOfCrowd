@@ -510,29 +510,17 @@ Figure~\ref{fig:direct-label} shows labels collected from the baseline game \emp
 
 \section{Conclusion}
 
+\section{Discussion}
+In our study, we present the problem of mapping human understanding of a machine learning problem onto a constrained model (bag-of-words) using crowdsourcing games. We designed several systems to evaulate how we can effectively learn human understanding. Our results show that such methods of learning latent human features is promising and that further examination of such systems could lead to better design of iML systems.
+
+We also evaluate the effectiveness of each presented game model and classes of games (competitive versus collaborative) and look at their effect on collected features. The goal here is to examine how different tasks posed may affect the final outcome of human judgment. This presents interesting perspectives in how to design iML systems to elicit specific kinds of feedback from humans.
+
+We think that this serves as a good pilot on further developing models of ``human features'' and is useful in future work on designing iML systems.
+
 \section{Future Work}
+Our game designs represent a fairly limited subset of games possible with text based analysis. In this paper we examine a relatively simplistic machine model for text to evaulate the feasibility of game based models. We imagine that with more complex models like n-gram or grammar based features, different designs for games can potentially be utilized and tested.
 
-
-% Balancing columns in a ref list is a bit of a pain because you
-% either use a hack like flushend or balance, or manually insert
-% a column break.  http://www.tex.ac.uk/cgi-bin/texfaq2html?label=balance
-% multicols doesn't work because we're already in two-column mode,
-% and flushend isn't awesome, so I choose balance.  See this
-% for more info: http://cs.brown.edu/system/software/latex/doc/balance.pdf
-%
-% Note that in a perfect world balance wants to be in the first
-% column of the last page.
-%
-% If balance doesn't work for you, you can remove that and
-% hard-code a column break into the bbl file right before you
-% submit:
-%
-% http://stackoverflow.com/questions/2149854/how-to-manually-equalize-columns-
-% in-an-ieee-paper-if-using-bibtex
-%
-% Or, just remove \balance and give up on balancing the last page.
-%
-%\balance{}
+Another potential interesting extension would be a more in-depth study of the incentive structures presented in the games that we have discussed. While our models of incentives are designed to prevent several base cases of degenerative play (i.e. plays where one side being passive leading to decent returns compared to being actively involved), the incentive models have not been extensively tested. We think that it is possible to derive better models that incentivize competitive behavior or collaborative behavior with more in-depth analysis of the game structure presented in our paper.
 
 % REFERENCES FORMAT
 % References must be the same font size as other body text.
